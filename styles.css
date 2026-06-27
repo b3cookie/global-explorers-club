@@ -352,9 +352,11 @@ section{ position:relative; }
 }
 @keyframes wheel{ 0%{ opacity:0; top:7px;} 30%{opacity:1;} 70%{ opacity:1; top:18px;} 100%{ opacity:0; top:18px;} }
 
+@media (max-width:860px){
+  .hero-owl{ height:62vh; opacity:0.55; right:-30px; }
+}
 @media (max-width:760px){
   .hero{ align-items:flex-end; padding-bottom:0; }
-  .hero-owl{ height:62vh; opacity:0.55; right:-30px; }
   .hero-content{ padding-bottom:90px; padding-top:0; }
   .hero-scrim{ background:linear-gradient(0deg, var(--ink) 8%, rgba(4,6,15,0.55) 46%, rgba(4,6,15,0.7) 100%); }
 }
@@ -368,7 +370,7 @@ section{ position:relative; }
 }
 .story-grid > *{ min-width:0; }
 .story-copy h2{ margin:18px 0 26px; }
-.story-copy .lead + .lead{ margin-top:20px; }
+.story-copy .reveal + .reveal .lead{ margin-top:20px; }
 .story-points{ margin-top:38px; display:flex; flex-direction:column; gap:2px; }
 .story-point{
   display:grid; grid-template-columns:auto 1fr; gap:20px; padding:22px 4px;
