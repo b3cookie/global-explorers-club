@@ -67,6 +67,7 @@ img{ display:block; max-width:100%; }
   align-items:center;
   gap:0.85em;
   white-space:nowrap;
+  max-width:100%;
 }
 .eyebrow::before{
   content:"";
@@ -87,6 +88,7 @@ h1,h2,h3{
   line-height:1.04;
   letter-spacing:-0.01em;
   text-wrap:balance;
+  overflow-wrap:break-word;
 }
 
 .display{
@@ -111,7 +113,7 @@ h1,h2,h3{
 .italic-accent{ font-style:italic; color:var(--amber-soft); }
 
 /* ---- Layout ---- */
-.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(16px,4vw,32px); }
 section{ position:relative; }
 .section-pad{ padding:clamp(96px, 14vh, 200px) 0; }
 
@@ -245,6 +247,15 @@ section{ position:relative; }
 @media (max-width:860px){
   .nav-links .nav-link-text{ display:none; }
 }
+@media (max-width:430px){
+  .brand .name{ display:none; }
+  .nav .btn{ padding:0.6em 1.1em; font-size:0.82rem; }
+  /* Eyebrows: allow wrap, hide decorative lines */
+  .eyebrow{ white-space:normal; flex-wrap:wrap; }
+  .eyebrow::before{ display:none; }
+  .eyebrow.centered::after{ display:none; }
+  .eyebrow.centered{ justify-content:center; }
+}
 
 /* ===========================================================
    HERO
@@ -354,6 +365,11 @@ section{ position:relative; }
 
 @media (max-width:860px){
   .hero-owl{ height:62vh; opacity:0.55; right:-30px; }
+  /* Hero CTA: stack buttons full-width on narrow screens */
+}
+@media (max-width:520px){
+  .hero-cta{ flex-direction:column; }
+  .hero-cta .btn{ width:100%; }
 }
 @media (max-width:760px){
   .hero{ align-items:flex-end; padding-bottom:0; }
@@ -438,7 +454,12 @@ section{ position:relative; }
 .chapter .read{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; color:var(--gold-bright); text-transform:uppercase; }
 .chapter .read .arrow{ transition:transform .4s var(--ease); }
 .chapter:hover .read .arrow{ transform:translateX(5px); }
-@media (max-width:880px){ .chapter-cards{ grid-template-columns:1fr; } .chapter{ min-height:440px; } .chapter p{ max-height:120px; opacity:1; } }
+@media (max-width:880px){
+  .chapter-cards{ grid-template-columns:1fr; }
+  .chapter{ min-height:440px; }
+  .chapter p{ max-height:120px; opacity:1; }
+  .chapter-body{ padding:26px 22px 28px; }
+}
 
 /* ===========================================================
    JOURNEY (Section 4) — Drumul eroului
@@ -497,12 +518,12 @@ section{ position:relative; }
 .journey-step.active .journey-node::before{ border-color:rgba(214,162,74,0.25); animation:pulse 2.4s ease-out infinite; }
 @keyframes pulse{ 0%{ transform:scale(1); opacity:.8;} 100%{ transform:scale(1.5); opacity:0;} }
 
-@media (max-width:780px){
+@media (max-width:860px){
   .journey-line{ left:31px; }
   .journey-step{ grid-template-columns:62px 1fr; gap:8px; margin-bottom:38px; }
   .journey-node{ grid-column:1 !important; width:54px; height:54px; }
   .journey-card{ grid-column:2 !important; text-align:left !important; padding:22px 22px; }
-  .journey-step:nth-child(odd) .journey-card p,.journey-card p{ margin-left:0 !important; }
+  .journey-step:nth-child(odd) .journey-card p,.journey-card p{ margin-left:0 !important; max-width:none; }
   .journey-side{ display:none; }
 }
 
@@ -531,6 +552,10 @@ section{ position:relative; }
 .stat .label{ margin-top:16px; font-size:0.8rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-dim); }
 .stat .sub{ margin-top:6px; font-size:0.86rem; color:var(--text-faint); font-style:italic; font-family:var(--serif); }
 .club-note{ margin-top:40px; font-size:0.86rem; color:var(--text-faint); letter-spacing:0.04em; }
+@media (min-width:761px) and (max-width:880px){
+  .stats{ gap:16px; }
+  .stat{ padding:34px 18px; }
+}
 @media (max-width:760px){ .stats{ grid-template-columns:1fr; } }
 
 /* ===========================================================
@@ -604,6 +629,11 @@ section{ position:relative; }
 .form-success .next .row{ display:flex; gap:12px; align-items:flex-start; font-size:0.9rem; color:var(--text-dim); line-height:1.45; }
 .form-success .next .row .tick{ color:var(--gold); flex:none; }
 @media (max-width:880px){ .finale-grid{ grid-template-columns:1fr; } }
+@media (max-width:480px){
+  .form-card{ padding:24px 20px; }
+  .form-card .btn-primary{ white-space:normal; line-height:1.3; }
+  .finale-copy h2{ font-size:clamp(1.9rem,6vw,2.4rem); }
+}
 
 /* ===========================================================
    FOOTER
@@ -620,5 +650,9 @@ section{ position:relative; }
 .footer-social{ display:flex; gap:14px; }
 .footer-social a{ width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:grid; place-items:center; color:var(--text-dim); transition:all .3s; }
 .footer-social a:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
-@media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
-@media (max-width:520px){ .footer-grid{ grid-template-columns:1fr; } }
+@media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:30px; } }
+@media (max-width:520px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }
+@media (max-width:430px){
+  .footer{ padding:50px 0 30px; }
+  .footer-bottom{ margin-top:36px; flex-direction:column; align-items:flex-start; gap:12px; }
+}
