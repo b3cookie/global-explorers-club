@@ -222,9 +222,9 @@ function Story() {
 
 function Chapters() {
   const cards = [
-    ["Capitolul 01", "Originea – MistyTrip", "Primul pas în comunitate. Locul unde povestea ta se întâlnește cu alte povești și începe cu adevărat.", "assets/card-cale.jpg"],
-    ["Capitolul 02", "Explorarea – Check-in Global", "Călătorii, descoperiri, orizonturi noi. Fiecare destinație e o scenă care schimbă ceva în tine.", "assets/card-exp.jpg"],
-    ["Capitolul 03", "Sanctuarul – World Caffè", "Locul unde membrii se conectează, colaborează și continuă drumul împreună. Casa comunității.", "assets/card-com.jpg"],
+    ["Capitolul 01", "Originea: MistyTrip", "Primul pas în comunitate. Locul unde povestea ta se întâlnește cu alte povești și începe cu adevărat.", "assets/card-cale.jpg"],
+    ["Capitolul 02", "Explorarea: Check-in Global", "Călătorii, descoperiri, orizonturi noi. Fiecare destinație e o scenă care schimbă ceva în tine.", "assets/card-exp.jpg"],
+    ["Capitolul 03", "Sanctuarul: World Caffè", "Locul unde membrii se conectează, colaborează și continuă drumul împreună. Casa comunității.", "assets/card-com.jpg"],
   ];
   return (
     <section className="chapters section-pad" id="descoperi">
