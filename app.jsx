@@ -1,4 +1,3 @@
-/* global React, ReactDOM */
 const { useState, useEffect, useRef } = React;
 
 const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbz7c3XgyTl9zhgFI3GgIV2myOJL0RtHJCotJoSemZRzrUGkoRFXrLB1_KvzMOKI4fdcIA/exec";
