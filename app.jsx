@@ -75,25 +75,55 @@ function Embers({ count = 18 }) {
 
 function Nav({ onWaitlist }) {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const f = () => setScrolled(window.scrollY > 40);
     f(); window.addEventListener("scroll", f, { passive: true });
     return () => window.removeEventListener("scroll", f);
   }, []);
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+  const close = () => setMenuOpen(false);
   return (
-    <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <a className="brand" href="#top">
-        <span className="mark"><OwlMark /></span>
-        <span className="name">Global Explorers<small>Club</small></span>
-      </a>
-      <div className="nav-links">
-        <a href="#poveste" className="nav-link-text">Povestea</a>
-        <a href="#descoperi" className="nav-link-text">Ce descoperi</a>
-        <a href="#drum" className="nav-link-text">Drumul eroului</a>
-        <a href="#club" className="nav-link-text">Clubul</a>
-        <a className="btn btn-primary" href="#waitlist" onClick={onWaitlist}>Lista de așteptare</a>
+    <>
+      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
+        <a className="brand" href="#top" onClick={close}>
+          <span className="mark"><OwlMark /></span>
+          <span className="name">Global Explorers<small>Club</small></span>
+        </a>
+        <div className="nav-links">
+          <a href="#poveste" className="nav-link-text">Povestea</a>
+          <a href="#descoperi" className="nav-link-text">Ce descoperi</a>
+          <a href="#drum" className="nav-link-text">Drumul eroului</a>
+          <a href="#club" className="nav-link-text">Clubul</a>
+          <a className="btn btn-primary" href="#waitlist" onClick={onWaitlist}>Lista de așteptare</a>
+        </div>
+        <button
+          className={`nav-toggle${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={menuOpen}
+        >
+          <span /><span /><span />
+        </button>
+      </nav>
+      <div className={`mobile-menu${menuOpen ? " open" : ""}`} aria-hidden={!menuOpen}>
+        <div className="mobile-menu-inner">
+          <nav className="mobile-nav">
+            <a href="#poveste" onClick={close}>Povestea</a>
+            <a href="#descoperi" onClick={close}>Ce descoperi</a>
+            <a href="#drum" onClick={close}>Drumul eroului</a>
+            <a href="#club" onClick={close}>Clubul</a>
+          </nav>
+          <a className="btn btn-primary mobile-menu-cta" href="#waitlist" onClick={() => { close(); onWaitlist && onWaitlist(); }}>
+            Lista de așteptare <Arrow />
+          </a>
+          <p className="mobile-menu-foot">Global Explorers Club · 2026</p>
+        </div>
       </div>
-    </nav>
+    </>
   );
 }
 
