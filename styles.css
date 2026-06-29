@@ -514,16 +514,24 @@ section{ position:relative; }
 .chapter-body{ position:relative; z-index:2; padding:34px 30px 36px; }
 .chapter-num{ font-family:var(--sans); font-size:0.7rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
 .chapter h3{ font-size:clamp(1.55rem,1.7vw,1.8rem); margin-bottom:12px; }
-.chapter p{ font-size:0.95rem; color:var(--text-dim); line-height:1.6; max-width:34ch;
-  max-height:0; opacity:0; overflow:hidden; transition:max-height .6s var(--ease), opacity .5s, margin .6s; }
-.chapter:hover p{ max-height:120px; opacity:1; margin-top:2px; }
+.chapter-tagline{
+  font-family:var(--serif); font-style:italic;
+  font-size:0.9rem; color:var(--amber-soft); line-height:1.4;
+  max-width:34ch; margin-top:10px; opacity:0.82;
+}
+.chapter-desc{
+  font-size:0.88rem; color:var(--text-dim); line-height:1.65; max-width:34ch;
+  max-height:0; opacity:0; overflow:hidden;
+  transition:max-height .7s var(--ease), opacity .5s, margin .6s;
+}
+.chapter:hover .chapter-desc{ max-height:220px; opacity:1; margin-top:12px; }
 .chapter .read{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; color:var(--gold-bright); text-transform:uppercase; }
 .chapter .read .arrow{ transition:transform .4s var(--ease); }
 .chapter:hover .read .arrow{ transform:translateX(5px); }
 @media (max-width:880px){
   .chapter-cards{ grid-template-columns:1fr; }
   .chapter{ min-height:440px; }
-  .chapter p{ max-height:120px; opacity:1; }
+  .chapter-desc{ max-height:400px; opacity:1; margin-top:12px; }
   .chapter-body{ padding:26px 22px 28px; }
 }
 

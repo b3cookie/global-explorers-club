@@ -221,9 +221,9 @@ function Story() {
 
 function Chapters() {
   const cards = [
-    ["Capitolul 01", "Originea: MistyTrip", "Aici începe povestea. Prima întâlnire cu o comunitate construită în jurul oamenilor, experiențelor și dorinței de a descoperi lumea împreună.", "assets/card-cale.jpg"],
-    ["Capitolul 02", "Explorarea: Check-in Global", "Fiecare destinație deschide o nouă perspectivă. Călătoriile devin experiențe împărtășite, iar fiecare pas adaugă un nou capitol poveștii tale.", "assets/card-exp.jpg"],
-    ["Capitolul 03", "Sanctuarul: World Caffè", "Locul în care comunitatea continuă dincolo de călătorii. Idei, conversații și conexiuni autentice care transformă experiențele în relații de durată.", "assets/card-com.jpg"],
+    ["Capitolul 01", "Originea: MistyTrip", "Aici începe povestea. MistyTrip este locul unde Exploratorul își redescoperă sensul, își activează oul și își scrie începutul. Este spațiul dintre vis și realitate, unde primele semne ale drumului prind formă.", '„Tot ce cauți în lume începe cu tine.”', "assets/card-exp.jpg"],
+    ["Capitolul 02", "Explorarea: Check-in Global", "Călătoria se deschide spre lume. Check-in Global este harta vie a exploratorilor — locurile, momentele și oamenii care dau sens drumului. Fiecare pas devine o amprentă, fiecare loc o poveste.", '„Lumea te recunoaște după urmele pe care le lași.”', "assets/card-cale.jpg"],
+    ["Capitolul 03", "Sanctuarul: World Caffè", "Întoarcerea acasă. World Caffè este templul comunității, locul unde poveștile se întâlnesc și se transformă în ritualuri. Aici se celebrează sensul, se împărtășește liniștea și se aprinde flacăra continuității.", '„Când povestea ta se unește cu a altora, devine lumină.”', "assets/card-com.jpg"],
   ];
   return (
     <section className="chapters section-pad" id="descoperi">
@@ -234,13 +234,14 @@ function Chapters() {
           <Reveal delay="d2"><p className="lead">Fiecare se deschide ca o nouă scenă. Alege-ți primul pas.</p></Reveal>
         </div>
         <div className="chapter-cards">
-          {cards.map(([num, title, desc, img], i) => (
+          {cards.map(([num, title, desc, quote, img], i) => (
             <Reveal key={title} className="chapter" delay={`d${i+1}`} tabIndex={0}>
               <div className="chapter-img"><img src={img} alt={title} /></div>
               <div className="chapter-body">
                 <div className="chapter-num">{num}</div>
                 <h3>{title}</h3>
-                <p>{desc}</p>
+                <p className="chapter-tagline">{quote}</p>
+                <p className="chapter-desc">{desc}</p>
                 <span className="read">Deschide capitolul <Arrow /></span>
               </div>
             </Reveal>
