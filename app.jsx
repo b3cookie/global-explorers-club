@@ -221,7 +221,7 @@ function Story() {
 
 function Chapters() {
   const cards = [
-    ["Capitolul 01", "Originea: MistyTrip", "Aici începe povestea. MistyTrip este locul unde Exploratorul își redescoperă sensul, își activează oul și își scrie începutul. Este spațiul dintre vis și realitate, unde primele semne ale drumului prind formă.", '„Tot ce cauți în lume începe cu tine.”', "assets/card-exp.jpg"],
+    ["Capitolul 01", "Originea: MistyTrip", "Aici începe povestea. MistyTrip este locul unde Exploratorul își redescoperă sensul, își activează gardianul și își scrie începutul. Este spațiul dintre vis și realitate, unde primele semne ale drumului prind formă.", '„Tot ce cauți în lume începe cu tine.”', "assets/card-exp.jpg"],
     ["Capitolul 02", "Explorarea: Check-in Global", "Călătoria se deschide spre lume. Check-in Global este harta vie a exploratorilor — locurile, momentele și oamenii care dau sens drumului. Fiecare pas devine o amprentă, fiecare loc o poveste.", '„Lumea te recunoaște după urmele pe care le lași.”', "assets/card-cale.jpg"],
     ["Capitolul 03", "Sanctuarul: World Caffè", "Întoarcerea acasă. World Caffè este templul comunității, locul unde poveștile se întâlnesc și se transformă în ritualuri. Aici se celebrează sensul, se împărtășește liniștea și se aprinde flacăra continuității.", '„Când povestea ta se unește cu a altora, devine lumină.”', "assets/card-com.jpg"],
   ];
@@ -415,8 +415,8 @@ function Finale() {
                   <span className="err">{errors.email}</span>
                 </div>
                 <div className="field">
-                  <label htmlFor="capitol">Ce capitol din viața ta vrei să schimbi? <span className="opt">(opțional)</span></label>
-                  <textarea id="capitol" rows={3} placeholder="Scrie în câteva cuvinte…" value={form.capitol} onChange={set("capitol")} />
+                  <label htmlFor="capitol">Dacă ai fi avut acest sistem de la început, acesta al câtelea capitol ar fi? <span className="opt">(opțional)</span></label>
+                  <textarea id="capitol" rows={3} placeholder="Povestește-ne în câteva cuvinte…" value={form.capitol} onChange={set("capitol")} />
                 </div>
                 <button className="btn btn-primary" type="submit" disabled={sending}>
                   {sending ? "Se trimite…" : <>Vreau să intru în poveste <Arrow /></>}
@@ -446,8 +446,66 @@ function Finale() {
 function Social({ d, label, href }) {
   return <a href={href} aria-label={label} target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">{d}</svg></a>;
 }
-function Footer() {
+
+function ContactModal({ onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  const links = [
+    {
+      label: "Instagram", href: "https://www.instagram.com/globalexplorersclub1/",
+      icon: <path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.42.4.68.8.9 1.4.17.4.36 1 .42 2.2.06 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.06 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.4.42-.8.68-1.4.9-.4.17-1 .36-2.2.42-1.2.06-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.06-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.42.8-.68 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.43-1.3.83-.4.4-.63.8-.83 1.3-.16.4-.35 1-.4 2.1C2.6 9.7 2.6 10.1 2.6 12s0 2.3.07 3.5c.05 1.1.24 1.7.4 2.1.2.5.43.9.83 1.3.4.4.8.63 1.3.83.4.16 1 .35 2.1.4 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c1.1-.05 1.7-.24 2.1-.4.5-.2.9-.43 1.3-.83.4-.4.63-.8.83-1.3.16-.4.35-1 .4-2.1.07-1.2.07-1.6.07-3.5s0-2.3-.07-3.5c-.05-1.1-.24-1.7-.4-2.1a3.5 3.5 0 0 0-.83-1.3 3.5 3.5 0 0 0-1.3-.83c-.4-.16-1-.35-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.95a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/>,
+    },
+    {
+      label: "Facebook", href: "https://www.facebook.com/people/Global-Explorers-Club/61590750172396/",
+      icon: <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z"/>,
+    },
+    {
+      label: "TikTok", href: "https://www.tiktok.com/@globalexplorersclub1",
+      icon: <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.3 0 .6.05.88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1Z"/>,
+    },
+    {
+      label: "contact@globalexplorersclub.ro", href: "mailto:contact@globalexplorersclub.ro",
+      icon: <g><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></g>, email: true,
+    },
+  ];
+
   return (
+    <div className="contact-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Contact">
+      <div className="contact-modal" onClick={e => e.stopPropagation()}>
+        <button className="contact-close" onClick={onClose} aria-label="Închide">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M1 1l10 10M11 1L1 11"/>
+          </svg>
+        </button>
+        <span className="eyebrow centered">Conectează-te cu noi</span>
+        <h3 className="contact-modal-title">Găsește-ne aici</h3>
+        <div className="contact-links">
+          {links.map(({ label, href, icon, email }) => (
+            <a
+              key={label}
+              href={href}
+              className="contact-link"
+              {...(!email ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill={email ? "none" : "currentColor"} stroke={email ? "currentColor" : "none"} strokeWidth={email ? "1.8" : "0"} strokeLinecap="round" strokeLinejoin="round">{icon}</svg>
+              <span>{label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Footer() {
+  const [contactOpen, setContactOpen] = useState(false);
+  return (
+    <>
     <footer className="footer">
       <div className="wrap">
         <div className="footer-grid">
@@ -468,13 +526,13 @@ function Footer() {
           <div className="footer-col">
             <h5>Comunitate</h5>
             <a href="#waitlist">Lista de așteptare</a>
-            <a href="#">Experiențe</a>
-            <a href="#">Evenimente</a>
-            <a href="#">Povești ale membrilor</a>
+            <a href="#descoperi">Experiențe</a>
+            <a href="#descoperi">Evenimente</a>
+            <a href="#descoperi">Povești ale membrilor</a>
           </div>
           <div className="footer-col">
             <h5>Legal</h5>
-            <a href="#">Contact</a>
+            <a href="#" onClick={e => { e.preventDefault(); setContactOpen(true); }}>Contact</a>
             <a href="politica-confidentialitate.html">Politică de confidențialitate</a>
             <a href="termeni-conditii.html">Termeni și condiții</a>
           </div>
@@ -489,6 +547,8 @@ function Footer() {
         </div>
       </div>
     </footer>
+    {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
+    </>
   );
 }
 

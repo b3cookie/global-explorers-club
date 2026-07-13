@@ -724,6 +724,46 @@ section{ position:relative; }
 .footer-social{ display:flex; gap:14px; }
 .footer-social a{ width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:grid; place-items:center; color:var(--text-dim); transition:all .3s; }
 .footer-social a:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
+/* ===========================================================
+   CONTACT MODAL
+   =========================================================== */
+.contact-overlay{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(4,6,15,0.78); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  animation:fadeUp .3s var(--ease);
+}
+.contact-modal{
+  background:rgba(8,12,26,0.96); backdrop-filter:blur(20px);
+  border:1px solid var(--line-gold); border-radius:16px;
+  padding:clamp(32px,5vw,52px);
+  max-width:440px; width:100%; position:relative;
+  box-shadow:0 50px 120px -40px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.05);
+  animation:sealPop .4s var(--ease);
+}
+.contact-close{
+  position:absolute; top:16px; right:16px;
+  width:34px; height:34px;
+  background:rgba(255,255,255,0.04); border:1px solid var(--line);
+  border-radius:50%; cursor:pointer;
+  display:grid; place-items:center;
+  color:var(--text-dim); transition:border-color .3s, color .3s;
+}
+.contact-close:hover{ border-color:var(--gold); color:var(--gold-bright); }
+.contact-modal-title{ font-size:1.9rem; margin:14px 0 26px; }
+.contact-links{ display:flex; flex-direction:column; gap:10px; }
+.contact-link{
+  display:flex; align-items:center; gap:16px;
+  padding:15px 18px;
+  border:1px solid var(--line); border-radius:10px;
+  color:var(--text-dim); text-decoration:none;
+  font-size:0.92rem; font-weight:500;
+  transition:border-color .3s, color .3s, transform .35s var(--ease);
+}
+.contact-link:hover{ border-color:var(--line-gold); color:var(--gold-bright); transform:translateX(5px); }
+.contact-link svg{ flex:none; color:var(--gold); }
+
 @media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:30px; } }
 @media (max-width:520px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }
 @media (max-width:430px){
