@@ -206,7 +206,7 @@ function Story() {
           </div>
           <Reveal className="story-visual" delay="d1">
             <div className="story-portrait">
-              <img src="assets/card-com.jpg" alt="Poartă luminată sub clar de lună" />
+              <img src="assets/card-com.jpg" alt="Poartă luminată sub clar de lună" loading="lazy" />
             </div>
             <div className="story-frame-line" />
             <div className="story-quote">
@@ -235,8 +235,8 @@ function Chapters() {
         </div>
         <div className="chapter-cards">
           {cards.map(([num, title, desc, quote, img], i) => (
-            <Reveal key={title} className="chapter" delay={`d${i+1}`} tabIndex={0}>
-              <div className="chapter-img"><img src={img} alt={title} /></div>
+            <Reveal key={title} className="chapter" delay={`d${i+1}`} tabIndex={0} role="article" onKeyDown={e => { if (e.key === "Enter" || e.key === " ") e.currentTarget.focus(); }}>
+              <div className="chapter-img"><img src={img} alt={title} loading="lazy" /></div>
               <div className="chapter-body">
                 <div className="chapter-num">{num}</div>
                 <h3>{title}</h3>
@@ -475,7 +475,7 @@ function ContactModal({ onClose }) {
   ];
 
   return (
-    <div className="contact-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Contact">
+    <div className="contact-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="contact-modal-heading">
       <div className="contact-modal" onClick={e => e.stopPropagation()}>
         <button className="contact-close" onClick={onClose} aria-label="Închide">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
@@ -483,7 +483,7 @@ function ContactModal({ onClose }) {
           </svg>
         </button>
         <span className="eyebrow centered">Conectează-te cu noi</span>
-        <h3 className="contact-modal-title">Găsește-ne aici</h3>
+        <h3 id="contact-modal-heading" className="contact-modal-title">Găsește-ne aici</h3>
         <div className="contact-links">
           {links.map(({ label, href, icon, email }) => (
             <a

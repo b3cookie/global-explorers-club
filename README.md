@@ -17,8 +17,8 @@ termeni-conditii.html           Termeni și condiții
 ## Rulare locală
 
 ```bash
-python3 -m http.server 4455
-# http://localhost:4455
+python3 -m http.server 4456
+# http://localhost:4456
 ```
 
 Nu este nevoie de build step. React și Babel sunt încărcate din CDN; JSX-ul este compilat în browser.
