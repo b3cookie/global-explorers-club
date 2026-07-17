@@ -138,7 +138,9 @@
 
   function open() {
     if (!overlay) build();
-    document.querySelectorAll(".st-sheet.open").forEach(function (s) { s.classList.remove("open"); });
+    // close any open mobile menu so the modal isn't stacked behind it
+    document.querySelectorAll(".mobile-menu.open, .st-sheet.open").forEach(function (m) { m.classList.remove("open"); });
+    document.querySelectorAll(".nav-toggle.open").forEach(function (t) { t.classList.remove("open"); });
     mountForm();
     lastFocus = document.activeElement;
     document.documentElement.classList.add("wl-lock");
