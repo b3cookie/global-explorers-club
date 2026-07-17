@@ -12,7 +12,7 @@ waitlist.js                     Popup-ul de înscriere, partajat pe toate pagini
 filosofia.html                  Pagina „Filosofia” (/filosofia)
 fundamentul-stiintific.html     Pagina „Fundamentul Științific” (/fundamentul-stiintific)
 assets/                         Imagini de producție
-favicon.svg + PNG-uri           Set complet de favicon (owl emblem)
+favicon-*.png / apple-touch     Set complet de favicon PNG (emblema owl aurie)
 site.webmanifest                Manifest PWA (iconuri, temă)
 vercel.json                     Configurare rute (cleanUrls)
 google-apps-script.gs           Script backend pentru colectarea înscrierilor
