@@ -538,7 +538,7 @@ section{ position:relative; }
 /* ===========================================================
    JOURNEY (Section 4) — Drumul eroului
    =========================================================== */
-.journey{ background:linear-gradient(180deg, var(--ink), var(--midnight-deep)); position:relative; overflow:hidden; }
+.journey{ background:linear-gradient(180deg, var(--ink), var(--midnight-deep) 55%, var(--ink)); position:relative; overflow:hidden; }
 .journey .wrap{ position:relative; z-index:2; }
 .journey-track{ position:relative; margin-top:clamp(50px,7vw,90px); }
 .journey-line{
@@ -900,7 +900,9 @@ html.wl-lock{ overflow:hidden; }
 /* Full-width cinematic band */
 .st-band{ position:relative; min-height:clamp(380px,64vh,640px); display:flex; align-items:center; justify-content:center; overflow:hidden; text-align:center; }
 .st-band .st-band-img{ position:absolute; inset:0; background-size:cover; background-position:center; z-index:0; transform:scale(1.02); }
-.st-band::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(4,6,15,0.72), rgba(4,6,15,0.46) 42%, rgba(4,6,15,0.85)); z-index:1; }
+/* Image emerges from and dissolves back into the surrounding dark (var(--ink))
+   at both edges, so the section joins are seamless — no hard visual break. */
+.st-band::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, var(--ink) 0%, rgba(4,6,15,0.55) 26%, rgba(4,6,15,0.55) 72%, var(--ink) 100%); z-index:1; }
 .st-band-inner{ position:relative; z-index:2; max-width:860px; padding:0 clamp(20px,5vw,40px); }
 .st-band-inner p{ font-family:var(--serif); font-style:italic; font-weight:500; line-height:1.2; font-size:clamp(1.8rem,4vw,3rem); color:#fff; }
 .st-band-inner .src{ display:block; margin-top:22px; font-family:var(--sans); font-style:normal; font-size:0.74rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber-soft); }
