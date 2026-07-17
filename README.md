@@ -8,6 +8,7 @@ Landing page pentru lista de așteptare — temă cinematică, dark/gold, în ro
 index.html                      Pagina principală
 app.jsx                         Aplicația React (toate secțiunile și formularul)
 styles.css                      Design system complet (variabile CSS, responsive)
+waitlist.js                     Popup-ul de înscriere, partajat pe toate paginile
 filosofia.html                  Pagina „Filosofia” (/filosofia)
 fundamentul-stiintific.html     Pagina „Fundamentul Științific” (/fundamentul-stiintific)
 assets/                         Imagini de producție
@@ -42,8 +43,29 @@ const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/.../exec";
 
 Fiecare înscriere devine un rând în Google Sheets: `Data | Prenume | Email | Capitol | Sursă`.
 
-Dacă variabila este goală, formularul funcționează în mod demo (validare + ecran de succes, fără salvare).
+Același formular este afișat inline în secțiunea `#waitlist` de pe pagina principală
+și, prin `waitlist.js`, ca popup deschis de orice buton „Lista de așteptare” de pe orice
+pagină. Fără JavaScript, butoanele fac fallback la secțiunea `#waitlist` de pe homepage.
 
-## Deployment
+## Deployment — Staging & Production
 
-Orice host static (Netlify, Vercel, GitHub Pages, server propriu). Nu sunt necesare configurări server-side.
+Un singur cod și un singur repo Git, două medii izolate pe Vercel:
+
+| Mediu                  | Branch Git | URL de deploy                        |
+| ---------------------- | ---------- | ------------------------------------ |
+| **Production** (live)  | `main`     | domeniul de producție (globalexplorers.ro) |
+| **Staging / Dev**      | `staging`  | URL-ul de Preview Vercel al branch-ului `staging` |
+
+Reguli de lucru:
+
+1. Nicio schimbare nu ajunge direct în Production în mod implicit.
+2. Toate modificările se comit pe `staging` și se publică întâi în mediul de Staging
+   pentru review.
+3. Production (`main`) se actualizează **doar** după aprobare explicită, prin merge
+   `staging` → `main`.
+4. Înainte de orice deploy se cere confirmarea mediului (Staging sau Production).
+
+Vercel tratează automat `main` ca Production și orice alt branch (inclusiv `staging`)
+ca Preview, cu URL separat — deci cele două medii sunt izolate fără configurări extra.
+Pentru un subdomeniu dedicat de staging (ex. `staging.globalexplorers.ro`), acesta se
+poate atașa branch-ului `staging` din panoul Vercel.

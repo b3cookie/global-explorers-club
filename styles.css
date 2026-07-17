@@ -764,6 +764,14 @@ section{ position:relative; }
 .contact-link:hover{ border-color:var(--line-gold); color:var(--gold-bright); transform:translateX(5px); }
 .contact-link svg{ flex:none; color:var(--gold); }
 
+/* Waitlist popup — reuses the .contact-* modal shell + global form styles */
+html.wl-lock{ overflow:hidden; }
+.contact-modal.waitlist{ max-width:480px; max-height:calc(100vh - 40px); overflow-y:auto; }
+.contact-modal.waitlist .form-title{ font-family:var(--serif); font-size:1.7rem; font-weight:500; margin:2px 44px 6px 0; }
+.contact-modal.waitlist .form-sub{ font-size:0.92rem; color:var(--text-faint); margin-bottom:24px; }
+.contact-modal.waitlist .btn-primary{ width:100%; margin-top:8px; }
+.contact-modal.waitlist .btn-primary:disabled{ opacity:0.65; cursor:progress; transform:none; box-shadow:0 8px 30px -8px rgba(214,162,74,0.45); }
+
 @media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:30px; } }
 @media (max-width:520px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }
 @media (max-width:430px){
