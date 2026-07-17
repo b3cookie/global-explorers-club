@@ -97,6 +97,8 @@ function Nav({ onWaitlist }) {
           <a href="#descoperi" className="nav-link-text">Ce descoperi</a>
           <a href="#drum" className="nav-link-text">Drumul eroului</a>
           <a href="#club" className="nav-link-text">Clubul</a>
+          <a href="/filosofia" className="nav-link-text">Filosofia</a>
+          <a href="/fundamentul-stiintific" className="nav-link-text">Fundamentul Științific</a>
           <a className="btn btn-primary" href="#waitlist" onClick={onWaitlist}>Lista de așteptare</a>
         </div>
         <button
@@ -115,6 +117,8 @@ function Nav({ onWaitlist }) {
             <a href="#descoperi" onClick={close}>Ce descoperi</a>
             <a href="#drum" onClick={close}>Drumul eroului</a>
             <a href="#club" onClick={close}>Clubul</a>
+            <a href="/filosofia" onClick={close}>Filosofia</a>
+            <a href="/fundamentul-stiintific" onClick={close}>Fundamentul Științific</a>
           </nav>
           <a className="btn btn-primary mobile-menu-cta" href="#waitlist" onClick={() => { close(); onWaitlist && onWaitlist(); }}>
             Lista de așteptare <Arrow />
@@ -522,6 +526,8 @@ function Footer() {
             <a href="#descoperi">Ce vei descoperi</a>
             <a href="#drum">Drumul eroului</a>
             <a href="#club">Clubul</a>
+            <a href="/filosofia">Filosofia</a>
+            <a href="/fundamentul-stiintific">Fundamentul Științific</a>
           </div>
           <div className="footer-col">
             <h5>Comunitate</h5>
@@ -533,8 +539,8 @@ function Footer() {
           <div className="footer-col">
             <h5>Legal</h5>
             <a href="#" onClick={e => { e.preventDefault(); setContactOpen(true); }}>Contact</a>
-            <a href="politica-confidentialitate.html">Politică de confidențialitate</a>
-            <a href="termeni-conditii.html">Termeni și condiții</a>
+            <a href="/politica-confidentialitate">Politică de confidențialitate</a>
+            <a href="/termeni-conditii">Termeni și condiții</a>
           </div>
         </div>
         <div className="footer-bottom">

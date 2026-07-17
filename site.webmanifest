@@ -1,0 +1,16 @@
+{
+  "name": "Global Explorers Club",
+  "short_name": "Explorers",
+  "description": "Comunitatea exclusivă unde experiențele, provocările și visele devin o poveste trăită cu intenție.",
+  "lang": "ro",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04060f",
+  "theme_color": "#04060f",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
+  ]
+}

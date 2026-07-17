@@ -8,11 +8,20 @@ Landing page pentru lista de așteptare — temă cinematică, dark/gold, în ro
 index.html                      Pagina principală
 app.jsx                         Aplicația React (toate secțiunile și formularul)
 styles.css                      Design system complet (variabile CSS, responsive)
+filosofia.html                  Pagina „Filosofia” (/filosofia)
+fundamentul-stiintific.html     Pagina „Fundamentul Științific” (/fundamentul-stiintific)
 assets/                         Imagini de producție
+favicon.svg + PNG-uri           Set complet de favicon (owl emblem)
+site.webmanifest                Manifest PWA (iconuri, temă)
+vercel.json                     Configurare rute (cleanUrls)
 google-apps-script.gs           Script backend pentru colectarea înscrierilor
 politica-confidentialitate.html Politică de confidențialitate
 termeni-conditii.html           Termeni și condiții
 ```
+
+Rutele curate (`/filosofia`, `/fundamentul-stiintific`, `/politica-confidentialitate`,
+`/termeni-conditii`) funcționează pe Vercel prin `cleanUrls`. Local, deschide fișierele
+`.html` direct.
 
 ## Rulare locală
 
