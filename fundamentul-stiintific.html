@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fundamentul Științific — Global Explorers Club</title>
-  <meta name="description" content="Memoria umană este fragilă prin construcție. Global Explorers Club devine un hipocamp din afară, extensia externă a identității și prima instituție a memoriei personale." />
+  <meta name="description" content="Fundamentul științific al GEC: memoria umană este fragilă prin construcție. GEC devine un hipocamp extern, extensia externă a identității, prima instituție a memoriei personale." />
   <meta name="theme-color" content="#04060f" />
   <link rel="canonical" href="https://globalexplorers.ro/fundamentul-stiintific" />
 
@@ -16,36 +16,119 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Global Explorers Club" />
   <meta property="og:title" content="Fundamentul Științific — Global Explorers Club" />
-  <meta property="og:description" content="Memoria umană este fragilă prin construcție. GEC devine hipocampul din afară al identității noastre." />
-  <meta property="og:image" content="https://globalexplorers.ro/assets/card-com.jpg" />
+  <meta property="og:description" content="Memoria umană este fragilă prin construcție. GEC devine un hipocamp extern, extensia externă a identității noastre." />
+  <meta property="og:image" content="https://globalexplorers.ro/assets/hero-bg.jpg" />
   <meta property="og:url" content="https://globalexplorers.ro/fundamentul-stiintific" />
   <meta property="og:locale" content="ro_RO" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fundamentul Științific — Global Explorers Club" />
-  <meta name="twitter:description" content="Memoria umană este fragilă prin construcție. GEC devine extensia externă a identității." />
-  <meta name="twitter:image" content="https://globalexplorers.ro/assets/card-com.jpg" />
+  <meta name="twitter:description" content="Memoria umană este fragilă prin construcție. GEC devine extensia externă a identității noastre." />
+  <meta name="twitter:image" content="https://globalexplorers.ro/assets/hero-bg.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Hanken+Grotesk:wght@380;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=10" />
+  <link rel="stylesheet" href="/styles.css?v=11" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Fundamentul Științific al Global Explorers Club",
-    "description": "Memoria umană este fragilă prin construcție. GEC devine un hipocamp din afară, extensia externă a identității și prima instituție a memoriei personale.",
+    "description": "Memoria umană este fragilă prin construcție. GEC devine un hipocamp extern, extensia externă a identității noastre, prima instituție a memoriei personale.",
     "inLanguage": "ro",
     "author": { "@type": "Organization", "name": "Global Explorers Club" },
     "publisher": { "@type": "Organization", "name": "Global Explorers Club" },
     "mainEntityOfPage": "https://globalexplorers.ro/fundamentul-stiintific"
   }
   </script>
+
+  <style>
+    /* ===== Shared page shell ===== */
+    .read-progress{ position:fixed; top:0; left:0; height:2px; width:0; z-index:101;
+      background:linear-gradient(90deg, var(--gold), var(--amber)); box-shadow:0 0 12px rgba(240,179,94,0.6); transition:width .1s linear; }
+
+    .page-hero{ position:relative; overflow:hidden; text-align:center; padding:clamp(150px,22vh,240px) 0 clamp(70px,10vh,120px); }
+    .page-hero .glow{ position:absolute; left:50%; top:24%; transform:translateX(-50%); width:60vmin; height:60vmin; border-radius:50%;
+      background:radial-gradient(circle, rgba(240,179,94,0.16), transparent 66%); filter:blur(10px); z-index:0; animation:breathe 8s ease-in-out infinite; pointer-events:none; }
+    .page-hero-inner{ position:relative; z-index:4; max-width:860px; margin:0 auto; }
+    .page-hero h1{ font-family:var(--serif); font-weight:500; letter-spacing:-0.02em; line-height:1.02; font-size:clamp(2.6rem,7vw,5.4rem); margin:20px 0 0; }
+    .page-hero .kicker{ display:inline-block; margin-bottom:6px; }
+    .page-hero .sub{ margin:26px auto 0; max-width:62ch; }
+    .hero-rule{ width:0; height:1px; margin:38px auto 0; background:linear-gradient(90deg, transparent, var(--gold), transparent); animation:ruleGrow 1.4s var(--ease) .5s forwards; }
+    @keyframes ruleGrow{ to{ width:min(220px,60%); } }
+
+    .divider-orn{ display:flex; align-items:center; justify-content:center; gap:18px; padding:clamp(24px,5vw,52px) 0; }
+    .divider-orn::before,.divider-orn::after{ content:""; height:1px; width:min(140px,26vw); }
+    .divider-orn::before{ background:linear-gradient(90deg, transparent, var(--line-gold)); }
+    .divider-orn::after{ background:linear-gradient(90deg, var(--line-gold), transparent); }
+    .divider-orn .dot{ width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(214,162,74,0.7); flex:none; }
+
+    /* ===== Long-form reading ===== */
+    .reading{ max-width:720px; margin:0 auto; padding:0 clamp(16px,4vw,32px); }
+    .reading p{ font-size:clamp(1.08rem,1.5vw,1.28rem); line-height:1.9; color:var(--text-dim); margin-bottom:26px; text-wrap:pretty; }
+    .reading p.lede::first-letter{
+      font-family:var(--serif); font-size:4.4rem; line-height:0.7; float:left;
+      color:var(--gold-bright); margin:10px 16px 0 0; font-weight:600;
+    }
+    .reading .term{ color:var(--text); font-weight:500; }
+    .reading .highlight{ color:var(--amber-soft); font-family:var(--serif); font-style:italic; font-size:clamp(1.25rem,1.8vw,1.5rem); line-height:1.5; }
+
+    .pullquote-c{
+      max-width:900px; margin:clamp(40px,7vw,80px) auto; text-align:center;
+      padding:0 clamp(16px,4vw,32px);
+    }
+    .pullquote-c p{
+      font-family:var(--serif); font-weight:500; letter-spacing:-0.01em; line-height:1.2;
+      font-size:clamp(1.8rem,4vw,3rem); color:var(--text);
+    }
+    .pullquote-c p .accent{ font-style:italic; color:var(--amber-soft); }
+
+    .section-label{ text-align:center; margin:0 auto clamp(30px,5vw,50px); display:flex; flex-direction:column; align-items:center; gap:16px; max-width:760px; }
+    .section-label .badge{ width:64px; height:64px; border-radius:50%; display:grid; place-items:center; font-size:1.7rem;
+      background:radial-gradient(circle at 50% 40%, rgba(240,179,94,0.16), rgba(8,12,26,0.5)); border:1px solid var(--line-gold); box-shadow:var(--glow-gold); }
+    .section-label h2{ font-family:var(--serif); font-size:clamp(1.9rem,3.6vw,3rem); font-weight:500; line-height:1.08; letter-spacing:-0.01em; }
+
+    /* mapping list */
+    .mapping{ max-width:640px; margin:34px auto; display:grid; gap:12px; }
+    .mapping .row{
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px;
+      border:1px solid var(--line); border-radius:12px; padding:18px 24px;
+      background:linear-gradient(180deg, rgba(14,20,42,0.4), rgba(8,11,24,0.2));
+      transition:border-color .5s, transform .5s var(--ease);
+    }
+    .mapping .row:hover{ border-color:var(--line-gold); transform:translateX(4px); }
+    .mapping .from{ text-align:right; color:var(--text-dim); font-size:1.02rem; }
+    .mapping .to{ text-align:left; color:var(--gold-bright); font-family:var(--serif); font-style:italic; font-size:1.2rem; }
+    .mapping .sep{ color:var(--gold); font-size:1.1rem; }
+    @media (max-width:520px){
+      .mapping .row{ grid-template-columns:1fr; gap:6px; text-align:center; padding:16px 18px; }
+      .mapping .from,.mapping .to{ text-align:center; }
+      .mapping .sep{ transform:rotate(90deg); }
+    }
+
+    /* timeline */
+    .sci-timeline{ max-width:720px; margin:20px auto 0; position:relative; padding-left:8px; }
+    .sci-timeline::before{ content:""; position:absolute; left:14px; top:8px; bottom:8px; width:2px; background:rgba(200,210,228,0.12); }
+    .tl-item{ position:relative; padding:0 0 clamp(34px,5vw,52px) 52px; }
+    .tl-item:last-child{ padding-bottom:0; }
+    .tl-item .dot{ position:absolute; left:5px; top:4px; width:20px; height:20px; border-radius:50%;
+      background:radial-gradient(circle at 50% 40%, #11182f, #070b1a); border:1px solid var(--line); display:grid; place-items:center; }
+    .tl-item .dot::after{ content:""; width:6px; height:6px; border-radius:50%; background:var(--silver-dim); }
+    .tl-item.now .dot{ border-color:var(--gold); box-shadow:0 0 0 5px rgba(214,162,74,0.1), 0 0 22px rgba(240,179,94,0.5); }
+    .tl-item.now .dot::after{ background:var(--gold-bright); }
+    .tl-item h3{ font-family:var(--serif); font-size:1.5rem; font-weight:500; color:var(--text); margin-bottom:6px; letter-spacing:-0.01em; }
+    .tl-item.now h3{ color:var(--gold-bright); }
+    .tl-item p{ color:var(--text-dim); font-size:1.02rem; line-height:1.7; }
+
+    .cta-band{ text-align:center; padding:clamp(80px,12vw,150px) 0; position:relative; overflow:hidden; }
+    .cta-band h2{ font-family:var(--serif); font-weight:500; font-size:clamp(2rem,4.4vw,3.4rem); line-height:1.08; margin-bottom:22px; }
+    .cta-band .lead{ margin:0 auto 34px; }
+  </style>
 </head>
 <body>
 
-  <div class="st-progress" id="stProgress"></div>
+  <div class="read-progress" id="progress"></div>
 
   <nav class="nav" id="siteNav">
     <a class="brand" href="/">
@@ -83,163 +166,117 @@
     </div>
   </div>
 
-  <header class="st-hero vignette">
-    <div class="st-glow"></div>
+  <header class="page-hero vignette">
+    <div class="glow"></div>
     <div class="embers" aria-hidden="true">
       <span class="ember" style="left:16%;--drift:22px;width:2px;height:2px;animation-duration:13s;animation-delay:-3s;"></span>
-      <span class="ember" style="left:34%;--drift:-18px;width:3px;height:3px;animation-duration:16s;animation-delay:-8s;"></span>
-      <span class="ember" style="left:52%;--drift:28px;width:2px;height:2px;animation-duration:12s;animation-delay:-1s;"></span>
-      <span class="ember" style="left:70%;--drift:-24px;width:3px;height:3px;animation-duration:18s;animation-delay:-11s;"></span>
-      <span class="ember" style="left:85%;--drift:18px;width:2px;height:2px;animation-duration:15s;animation-delay:-5s;"></span>
+      <span class="ember" style="left:30%;--drift:-18px;width:3px;height:3px;animation-duration:16s;animation-delay:-8s;"></span>
+      <span class="ember" style="left:50%;--drift:28px;width:2px;height:2px;animation-duration:12s;animation-delay:-1s;"></span>
+      <span class="ember" style="left:68%;--drift:-24px;width:3px;height:3px;animation-duration:18s;animation-delay:-11s;"></span>
+      <span class="ember" style="left:84%;--drift:18px;width:2px;height:2px;animation-duration:15s;animation-delay:-5s;"></span>
     </div>
-    <div class="st-hero-inner">
-      <span class="eyebrow centered st-kicker">Fundamentul Științific</span>
-      <h1>Fundamentul Științific</h1>
-      <p class="st-sub">Memoria umană uită prin natura ei. GEC devine locul din afară în care viața nu se mai pierde.</p>
-      <div class="st-hero-rule"></div>
+    <div class="wrap">
+      <div class="page-hero-inner">
+        <span class="eyebrow centered kicker">Fundamentul Științific · Global Explorers Club</span>
+        <h1>Fundamentul Științific</h1>
+        <p class="lead sub">Memoria umană este fragilă prin construcție. GEC devine hipocampul extern al identității, locul unde viața nu se mai pierde.</p>
+        <div class="hero-rule"></div>
+      </div>
     </div>
   </header>
 
-  <!-- Chapter 1: memory fragility -->
-  <section class="st-section">
-    <div class="st-reading">
-      <p class="lede reveal">Memoria umană este fragilă prin însăși alcătuirea ei. Creierul nu a fost făcut să păstreze o viață întreagă și coerentă, ci să ne ajute să trecem cu bine prin clipa de față.</p>
-      <p class="reveal">Hipocampul, locul în care se nasc amintirile, alege, păstrează și readuce doar o parte din ce trăim. Restul se pierde pe drum, se decolorează sau se rescrie puțin diferit de fiecare dată când ne întoarcem la el.</p>
-      <p class="reveal">Primii ani ai vieții dispar aproape cu totul, șterși de ceea ce numim amnezie infantilă. Iar amintirile de mai târziu nu sunt înregistrări fidele, ci povești pe care ni le spunem iar și iar, schimbând fără să vrem câte ceva la fiecare repetare.</p>
-      <p class="reveal">Așa se face că identitatea pe care o simțim atât de sigură este, în realitate, o versiune fragmentară și mereu în mișcare a vieții pe care am trăit-o cu adevărat.</p>
+  <section class="section-pad" style="padding-top:clamp(20px,4vw,40px);">
+    <div class="reading">
+      <p class="lede reveal">Memoria umană este fragilă prin construcție.</p>
+      <p class="reveal">Creierul nostru nu a fost proiectat să păstreze o viață întreagă în mod coerent.</p>
+      <p class="reveal"><span class="term">Hipocampul</span>, centrul memoriei, encodează, stochează și recuperează doar o parte din experiențele noastre.</p>
+      <p class="reveal">Restul se pierd, se estompează sau se reconstruiesc diferit de fiecare dată când ne amintim.</p>
+      <p class="reveal">Primele amintiri dispar complet din cauza amneziei infantile.</p>
+      <p class="reveal">Iar amintirile adulte nu sunt înregistrări fidele, ci povești rescrise continuu.</p>
+      <p class="reveal">De aceea identitatea pe care o simțim este o versiune fragmentată și instabilă a vieții reale.</p>
     </div>
   </section>
 
-  <section class="st-band">
-    <div class="st-band-img" style="background-image:url('/assets/card-com.jpg')"></div>
-    <div class="st-band-inner reveal">
-      <p>Aici începe Global Explorers Club: un hipocamp din afară, care ține minte în locul nostru ceea ce memoriei îi scapă.</p>
-      <span class="src">Fundamentul științific</span>
+  <div class="pullquote-c reveal">
+    <p>Aici intervine GEC ca un <span class="accent">hipocamp extern.</span></p>
+  </div>
+
+  <section class="section-pad" style="padding-top:0;">
+    <div class="reading">
+      <p class="reveal">GEC <span class="term">encodează</span> experiențele prin momente, check-in-uri și ritualuri.</p>
+      <p class="reveal">Le <span class="term">stochează fidel</span> prin timeline, epoci și arhiva vieții.</p>
+      <p class="reveal">Le <span class="term">readuce în conștiință</span> prin Gardian și recapitulări.</p>
+      <p class="reveal highlight">GEC nu concurează cu memoria biologică. O completează.</p>
+      <p class="reveal">Devine extensia externă a identității noastre.</p>
     </div>
   </section>
 
-  <!-- Chapter 2: external memory -->
-  <section class="st-split reverse">
-    <div class="st-media art reveal">
-      <div class="st-figure">
-        <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g stroke="currentColor" stroke-width="1" opacity="0.5">
-            <line x1="110" y1="110" x2="110" y2="40"/><line x1="110" y1="110" x2="170" y2="70"/>
-            <line x1="110" y1="110" x2="182" y2="130"/><line x1="110" y1="110" x2="150" y2="182"/>
-            <line x1="110" y1="110" x2="70" y2="182"/><line x1="110" y1="110" x2="38" y2="130"/>
-            <line x1="110" y1="110" x2="50" y2="70"/>
-          </g>
-          <circle cx="110" cy="110" r="46" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-          <g fill="currentColor">
-            <circle cx="110" cy="40" r="3"/><circle cx="170" cy="70" r="3"/><circle cx="182" cy="130" r="3"/>
-            <circle cx="150" cy="182" r="3"/><circle cx="70" cy="182" r="3"/><circle cx="38" cy="130" r="3"/><circle cx="50" cy="70" r="3"/>
-          </g>
-          <circle cx="110" cy="110" r="7" fill="currentColor"/>
-          <circle cx="110" cy="110" r="14" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-        </svg>
+  <div class="divider-orn"><span class="dot"></span></div>
+
+  <!-- Filmul Vieții -->
+  <section class="section-pad" style="padding-top:clamp(40px,7vw,80px);">
+    <div class="wrap">
+      <div class="section-label reveal">
+        <span class="badge">🎞️</span>
+        <h2>Filmul Vieții nu este o metaforă</h2>
       </div>
-    </div>
-    <div class="st-copy reveal">
-      <div class="st-eyebrow"><span class="no">01</span><span class="lbl">Extensia identității</span></div>
-      <h2>O memorie care nu uită</h2>
-      <p>GEC dă experiențelor o formă. Le adună prin momente, prin check-in-uri și prin ritualuri, apoi le așază fidel într-un timeline, în epoci și într-o arhivă a vieții din care nimic nu se mai pierde. Când ai nevoie, ți le readuce în față, prin recapitulări și prin Gardianul care îți poartă povestea mai departe.</p>
-      <p class="st-em">GEC nu vine să înlocuiască memoria biologică. Vine să o întregească.</p>
-      <p>Cu timpul, devine o prelungire a ta: partea care nu uită.</p>
-    </div>
-  </section>
-
-  <!-- Chapter 3: Filmul Vieții -->
-  <section class="st-section">
-    <div class="st-section-head reveal">
-      <svg width="58" height="58" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--gold)" aria-hidden="true">
-        <rect x="12" y="14" width="40" height="36" rx="3"/>
-        <line x1="20" y1="14" x2="20" y2="50"/><line x1="44" y1="14" x2="44" y2="50"/>
-        <g stroke-width="1"><line x1="14" y1="22" x2="18" y2="22"/><line x1="14" y1="30" x2="18" y2="30"/><line x1="14" y1="38" x2="18" y2="38"/><line x1="14" y1="46" x2="18" y2="46"/><line x1="46" y1="22" x2="50" y2="22"/><line x1="46" y1="30" x2="50" y2="30"/><line x1="46" y1="38" x2="50" y2="38"/><line x1="46" y1="46" x2="50" y2="46"/></g>
-        <path d="M28 26 L38 32 L28 38 Z" fill="currentColor" stroke="none"/>
-      </svg>
-      <h2>Filmul Vieții nu este o metaforă</h2>
-    </div>
-    <div class="st-reading">
-      <p class="reveal">Neuroștiința spune același lucru într-un alt fel: memoria autobiografică se poartă ca un film. Creierul nu reține fapte răzlețe, ci scene, capitole și treceri de la unul la altul.</p>
-      <p class="reveal">GEC nu face decât să scoată la lumină acest mecanism și să îl transforme în ceva ce poți vedea cu ochii.</p>
-    </div>
-    <div class="st-map reveal">
-      <div class="row"><span class="from">momentele</span><span class="link"></span><span class="to">cadre</span></div>
-      <div class="row"><span class="from">epocile</span><span class="link"></span><span class="to">capitole</span></div>
-      <div class="row"><span class="from">emoțiile</span><span class="link"></span><span class="to">montaj</span></div>
-      <div class="row"><span class="from">ritualurile</span><span class="link"></span><span class="to">treceri</span></div>
-    </div>
-  </section>
-
-  <section class="st-band">
-    <div class="st-band-img" style="background-image:url('/assets/card-cale.jpg')"></div>
-    <div class="st-band-inner reveal">
-      <p>Astfel, Filmul Vieții devine ceva ce poți privi, revedea și lăsa mai departe.</p>
-    </div>
-  </section>
-
-  <!-- Chapter 4: institution -->
-  <section class="st-section">
-    <div class="st-section-head reveal">
-      <svg width="60" height="52" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-width="1.3" style="color:var(--gold)" aria-hidden="true">
-        <path d="M28 60 L120 26 L212 60 Z"/>
-        <line x1="20" y1="70" x2="220" y2="70"/>
-        <g stroke-width="1.4"><line x1="48" y1="78" x2="48" y2="160"/><line x1="88" y1="78" x2="88" y2="160"/><line x1="120" y1="78" x2="120" y2="160"/><line x1="152" y1="78" x2="152" y2="160"/><line x1="192" y1="78" x2="192" y2="160"/></g>
-        <line x1="20" y1="168" x2="220" y2="168"/>
-        <line x1="10" y1="180" x2="230" y2="180" opacity="0.6"/>
-      </svg>
-      <h2>O instituție a memoriei</h2>
-    </div>
-    <div class="st-reading" style="margin-bottom:clamp(30px,5vw,52px)">
-      <p class="reveal">De când se știe, omul a căutat locuri în care să-și păstreze ce are mai de preț. Fiecare epocă și-a ridicat propriul așezământ al memoriei, dăruit celor care aveau să vină.</p>
-    </div>
-    <div class="st-eras">
-      <div class="st-era reveal">
-        <span class="mk"></span>
-        <span class="yr">Antichitate</span>
-        <h3>Biblioteca din Alexandria</h3>
-        <p>A adunat, sub un singur acoperiș, cunoașterea unei lumi întregi.</p>
+      <div class="reading">
+        <p class="reveal">Neuroștiința arată că memoria autobiografică funcționează asemenea unui film.</p>
+        <p class="reveal">Creierul salvează scene, capitole și tranziții.</p>
+        <p class="reveal">GEC transformă acest mecanism într-o tehnologie vizibilă:</p>
       </div>
-      <div class="st-era reveal">
-        <span class="mk"></span>
-        <span class="yr">Evul mediu și modern</span>
-        <h3>Universitățile</h3>
-        <p>Au dus înțelepciunea mai departe, dintr-o generație în alta.</p>
-      </div>
-      <div class="st-era reveal">
-        <span class="mk"></span>
-        <span class="yr">Epoca modernă</span>
-        <h3>Muzeele</h3>
-        <p>Au avut grijă de memoria noastră comună.</p>
-      </div>
-      <div class="st-era now reveal">
-        <span class="mk"></span>
-        <span class="yr">Astăzi</span>
-        <h3>Global Explorers Club</h3>
-        <p>Prima instituție a memoriei personale. O infrastructură care ia viața fiecărui om și o preface într-o poveste închegată, care poate fi păstrată și dăruită mai departe.</p>
+      <div class="mapping reveal">
+        <div class="row"><span class="from">momentele</span><span class="sep">→</span><span class="to">cadre</span></div>
+        <div class="row"><span class="from">epocile</span><span class="sep">→</span><span class="to">capitole</span></div>
+        <div class="row"><span class="from">emoțiile</span><span class="sep">→</span><span class="to">montaj</span></div>
+        <div class="row"><span class="from">ritualurile</span><span class="sep">→</span><span class="to">tranziții</span></div>
       </div>
     </div>
   </section>
 
-  <section class="st-quote">
-    <p class="reveal">Pentru întâia oară în istorie, identitatea nu mai dispare <span class="accent">odată cu noi.</span></p>
+  <div class="pullquote-c reveal">
+    <p>Filmul Vieții devine <span class="accent">vizibil, editabil și moștenibil.</span></p>
+  </div>
+
+  <div class="divider-orn"><span class="dot"></span></div>
+
+  <!-- Instituție civilizațională -->
+  <section class="section-pad" style="padding-top:clamp(40px,7vw,80px);">
+    <div class="wrap">
+      <div class="section-label reveal">
+        <span class="badge">🏛️</span>
+        <h2>GEC ca instituție civilizațională</h2>
+      </div>
+      <div class="sci-timeline">
+        <div class="tl-item reveal"><span class="dot"></span><h3>Biblioteca din Alexandria</h3><p>A conservat cunoașterea.</p></div>
+        <div class="tl-item reveal"><span class="dot"></span><h3>Universitățile</h3><p>Au transmis înțelepciunea.</p></div>
+        <div class="tl-item reveal"><span class="dot"></span><h3>Muzeele</h3><p>Au conservat memoria colectivă.</p></div>
+        <div class="tl-item now reveal"><span class="dot"></span><h3>Global Explorers Club</h3><p>Este prima instituție a memoriei personale. Infrastructura care transformă viața fiecărui om într-o poveste coerentă, arhivabilă și transmisibilă.</p></div>
+      </div>
+    </div>
   </section>
 
-  <div class="st-rule"><span class="dot"></span></div>
+  <div class="pullquote-c reveal" style="margin-bottom:clamp(20px,4vw,40px);">
+    <p>Pentru prima dată în istorie,<br/>identitatea nu mai dispare <span class="accent">odată cu noi.</span></p>
+  </div>
 
-  <section class="st-cta vignette">
+  <div class="divider-orn"><span class="dot"></span></div>
+
+  <section class="cta-band vignette">
     <div class="embers" aria-hidden="true">
       <span class="ember" style="left:24%;--drift:20px;width:2px;height:2px;animation-duration:14s;animation-delay:-4s;"></span>
       <span class="ember" style="left:54%;--drift:-22px;width:3px;height:3px;animation-duration:17s;animation-delay:-9s;"></span>
       <span class="ember" style="left:78%;--drift:18px;width:2px;height:2px;animation-duration:15s;animation-delay:-2s;"></span>
     </div>
-    <div class="st-cta-inner reveal">
-      <span class="eyebrow centered">Fii parte din memorie</span>
-      <h2>Viața ta merită<br/>să fie <span class="italic-accent">păstrată.</span></h2>
-      <p class="lead">Intră pe lista de așteptare și scrie primul capitol al propriei tale arhive.</p>
-      <a class="btn btn-primary" href="/#waitlist">Intră pe lista de așteptare
-        <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px;margin:0 auto;">
+        <span class="eyebrow centered">Fii parte din memorie</span>
+        <h2>Viața ta merită să fie<br/><span class="italic-accent">păstrată.</span></h2>
+        <p class="lead">Intră pe lista de așteptare și scrie primul capitol al propriei arhive.</p>
+        <a class="btn btn-primary" href="/#waitlist">Intră pe lista de așteptare
+          <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -289,7 +326,7 @@
       var nav = document.getElementById('siteNav');
       var toggle = document.getElementById('navToggle');
       var menu = document.getElementById('mobileMenu');
-      var prog = document.getElementById('stProgress');
+      var prog = document.getElementById('progress');
       var onScroll = function(){
         nav.classList.toggle('scrolled', window.scrollY > 40);
         var h = document.documentElement.scrollHeight - window.innerHeight;
@@ -307,7 +344,7 @@
       menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
       var io = new IntersectionObserver(function(es){
         es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+      }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     })();
   </script>
