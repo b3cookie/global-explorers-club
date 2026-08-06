@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filosofia — Global Explorers Club</title>
-  <meta name="description" content="Filosofia Global Explorers Club: sensul uman, Gardienii ca arhetipuri, epocile, ritualurile, comunitatea și moștenirea. Arhitectura care transformă viața într-o poveste trăită cu intenție." />
+  <title>Locul GEC în Lume — Global Explorers Club</title>
+  <meta name="description" content="Unde se așază Global Explorers Club în ecosistemul global, pe înțelesul tuturor: ce este GEC, ce îl face diferit, unde se poziționează și de ce e greu de replicat." />
   <meta name="theme-color" content="#04060f" />
-  <link rel="canonical" href="https://globalexplorers.ro/filosofia" />
+  <link rel="canonical" href="https://globalexplorers.ro/locul-gec-in-lume" />
 
   <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png" />
   <link rel="icon" href="/favicon-16.png?v=2" sizes="16x16" type="image/png" />
@@ -15,14 +15,14 @@
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Global Explorers Club" />
-  <meta property="og:title" content="Filosofia — Global Explorers Club" />
-  <meta property="og:description" content="Arhitectura care transformă viața într-o poveste trăită cu intenție: sensul, Gardienii, epocile, ritualurile, comunitatea și moștenirea." />
+  <meta property="og:title" content="Locul GEC în Lume — Global Explorers Club" />
+  <meta property="og:description" content="Unde se așază GEC în ecosistemul global, pe înțelesul tuturor. Prima infrastructură de memorie umană." />
   <meta property="og:image" content="https://globalexplorers.ro/assets/hero-bg.jpg" />
-  <meta property="og:url" content="https://globalexplorers.ro/filosofia" />
+  <meta property="og:url" content="https://globalexplorers.ro/locul-gec-in-lume" />
   <meta property="og:locale" content="ro_RO" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Filosofia — Global Explorers Club" />
-  <meta name="twitter:description" content="Arhitectura care transformă viața într-o poveste trăită cu intenție." />
+  <meta name="twitter:title" content="Locul GEC în Lume — Global Explorers Club" />
+  <meta name="twitter:description" content="Unde se așază GEC în ecosistemul global, pe înțelesul tuturor." />
   <meta name="twitter:image" content="https://globalexplorers.ro/assets/hero-bg.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,17 +34,17 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Filosofia Global Explorers Club",
-    "description": "Arhitectura care transformă viața într-o poveste trăită cu intenție: sensul uman, Gardienii, epocile, ritualurile, comunitatea și moștenirea.",
+    "headline": "Locul GEC în Lume",
+    "description": "Unde se așază Global Explorers Club în ecosistemul global, pe înțelesul tuturor: ce este GEC, ce îl face diferit, unde se poziționează și de ce e greu de replicat.",
     "inLanguage": "ro",
     "author": { "@type": "Organization", "name": "Global Explorers Club" },
     "publisher": { "@type": "Organization", "name": "Global Explorers Club" },
-    "mainEntityOfPage": "https://globalexplorers.ro/filosofia"
+    "mainEntityOfPage": "https://globalexplorers.ro/locul-gec-in-lume"
   }
   </script>
 
   <style>
-    /* ===== Shared page shell (Filosofia / Fundament) ===== */
+    /* ===== Shared page shell (Filosofia / Fundament / Locul GEC) ===== */
 
     /* ===== Page hero ===== */
     .page-hero{
@@ -134,22 +134,30 @@
       font-family:var(--serif); font-style:italic; font-size:clamp(1.35rem,2.4vw,1.9rem);
       line-height:1.35; color:var(--amber-soft);
     }
-    .pullquote.long{ font-size:clamp(1.1rem,1.7vw,1.5rem); white-space:nowrap; }
-    @media (max-width:760px){ .pullquote.long{ white-space:normal; } }
 
-    /* archetype grid */
-    .archetype-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin:30px 0 6px; }
+    /* archetype-style grid, reused for comparisons + ecosystem map */
+    .archetype-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:30px 0 6px; }
     .archetype{
       border:1px solid var(--line); border-radius:12px; padding:26px 16px; text-align:center;
       background:linear-gradient(180deg, rgba(14,20,42,0.4), rgba(8,11,24,0.2));
       transition:border-color .5s, transform .5s var(--ease), box-shadow .5s;
     }
     .archetype:hover{ border-color:var(--line-gold); transform:translateY(-5px); box-shadow:var(--glow-amber-soft); }
-    .archetype .name{ font-family:var(--serif); font-size:1.3rem; font-weight:600; color:var(--text); display:block; }
-    .archetype .arrow{ display:block; color:var(--gold); font-size:1rem; margin:8px 0; }
-    .archetype .trait{ font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-bright); }
+    .archetype .name{ font-family:var(--serif); font-size:1.22rem; font-weight:600; color:var(--text); display:block; line-height:1.25; }
+    .archetype .arrow{ display:block; color:var(--gold); font-size:1rem; margin:10px 0; }
+    .archetype .trait{ font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-bright); line-height:1.4; }
     @media (max-width:820px){ .archetype-grid{ grid-template-columns:repeat(2,1fr); } }
     @media (max-width:420px){ .archetype-grid{ grid-template-columns:1fr; } }
+
+    /* manifest */
+    .manifest{ text-align:center; max-width:620px; margin:0 auto; padding:clamp(50px,8vw,90px) clamp(16px,4vw,32px); }
+    .manifest .stanza{ margin-bottom:30px; }
+    .manifest .stanza:last-child{ margin-bottom:0; }
+    .manifest p{
+      font-family:var(--serif); font-style:italic; color:var(--amber-soft);
+      font-size:clamp(1.2rem,2.2vw,1.6rem); line-height:1.6;
+    }
+    .manifest .final{ color:var(--text); font-style:normal; font-weight:500; margin-top:6px; }
 
     /* CTA band */
     .cta-band{ text-align:center; padding:clamp(80px,12vw,150px) 0; position:relative; overflow:hidden; }
@@ -181,9 +189,9 @@
         </button>
         <div class="nav-dropdown-menu">
           <div class="nav-dropdown-menu-inner">
-            <a href="/filosofia" class="active">Filosofia</a>
+            <a href="/filosofia">Filosofia</a>
             <a href="/fundamentul-stiintific">Fundamentul Științific</a>
-            <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
+            <a href="/locul-gec-in-lume" class="active">Locul GEC în Lume</a>
           </div>
         </div>
       </div>
@@ -201,9 +209,9 @@
         <a href="/#drum">Drumul eroului</a>
         <a href="/#club">Clubul</a>
         <span class="mobile-nav-label">Explorează</span>
-        <a href="/filosofia" class="active">Filosofia</a>
+        <a href="/filosofia">Filosofia</a>
         <a href="/fundamentul-stiintific">Fundamentul Științific</a>
-        <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
+        <a href="/locul-gec-in-lume" class="active">Locul GEC în Lume</a>
       </nav>
       <a class="btn btn-primary mobile-menu-cta" href="/#waitlist">
         Lista de așteptare
@@ -226,73 +234,57 @@
     </div>
     <div class="wrap">
       <div class="page-hero-inner">
-        <span class="eyebrow centered kicker">Filosofia · Global Explorers Club</span>
-        <h1>Filosofia</h1>
-        <p class="lead sub">De ce existăm, cum vedem viața și ce lăsăm mai departe. Nu o teorie, ci o arhitectură a sensului.</p>
+        <span class="eyebrow centered kicker">Locul GEC în Lume</span>
+        <h1>Unde se așază GEC în lume</h1>
+        <p class="lead sub">Unde se așază GEC în ecosistemul global, pe înțelesul tuturor.</p>
         <div class="hero-rule"></div>
       </div>
     </div>
   </header>
 
   <section class="statement">
-    <p class="reveal">Viața nu este o listă de momente.<br/><span class="accent">Este o călătorie.</span></p>
-    <p class="small reveal">Oamenii nu caută doar experiențe. Caută sens, continuitate, identitate și poveste.</p>
+    <p class="reveal">Dacă proiectul va reuși,<br/>motivul principal <span class="accent">nu va fi tehnologia.</span></p>
+    <p class="small reveal">Va fi faptul că oamenii nu vor doar să trăiască experiențe; vor să nu le piardă și să lase o poveste în urmă.</p>
   </section>
 
   <div class="divider-orn"><span class="dot"></span></div>
 
-  <!-- 1. Sensul uman -->
+  <!-- 1. Ce este GEC -->
   <section class="philo">
     <div class="wrap philo-inner">
       <div class="philo-card reveal">
         <div class="philo-head">
-          <span class="philo-icon">🧭</span>
-          <div><span class="step">Capitolul I</span><h2>De ce există GEC: perspectiva sensului uman</h2></div>
+          <span class="philo-icon">📖</span>
+          <div><span class="step">Capitolul I</span><h2>Ce este GEC</h2></div>
         </div>
         <div class="philo-body">
-          <p>Oamenii nu caută doar experiențe. Caută sens, continuitate, identitate și poveste.</p>
-          <p class="emph">Viața nu este o listă de momente. Este o călătorie.</p>
-          <p>Iar călătoria are nevoie de:</p>
-          <ul class="philo-list">
-            <li>ritualuri</li>
-            <li>treceri</li>
-            <li>epoci</li>
-            <li>simboluri</li>
-            <li>introspecție</li>
-            <li>comunitate</li>
-            <li>un loc unde să fie văzută și înțeleasă</li>
-          </ul>
-          <p class="pullquote long">GEC este arhitectura care transformă viața într-o poveste trăită cu intenție.</p>
+          <p>Global Explorers Club este locul unde oamenii își păstrează viața ca poveste.</p>
+          <p>Nu ca poze, nu ca postări, nu ca performanțe.<br/>Ci ca <em>epoci trăite conștient</em>.</p>
+          <p class="pullquote">GEC este prima infrastructură dedicată memoriei umane: un sistem care te ajută să vezi cine ai fost, cine ești și cine devii.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. Gardienii -->
+  <!-- 2. Ce face GEC diferit -->
   <section class="philo">
     <div class="wrap philo-inner">
       <div class="philo-card reveal">
         <div class="philo-head">
-          <span class="philo-icon">🔱</span>
-          <div><span class="step">Capitolul II</span><h2>Filosofia Gardienilor</h2></div>
+          <span class="philo-icon">🧩</span>
+          <div><span class="step">Capitolul II</span><h2>Ce face GEC diferit</h2></div>
         </div>
         <div class="philo-body">
-          <p>Gardienii nu sunt personaje. Sunt arhetipuri psihologice.</p>
-          <p>Fiecare Gardian reprezintă:</p>
-          <ul class="philo-list">
-            <li>o stare</li>
-            <li>o lecție</li>
-            <li>un mod de a vedea lumea</li>
-            <li>o etapă din viața ta</li>
-          </ul>
+          <p>Aplicațiile din lume păstrează fragmente:</p>
           <div class="archetype-grid">
-            <div class="archetype"><span class="name">Elefantul</span><span class="arrow">→</span><span class="trait">Răbdare</span></div>
-            <div class="archetype"><span class="name">Rinocerul</span><span class="arrow">→</span><span class="trait">Direcție</span></div>
-            <div class="archetype"><span class="name">Girafa</span><span class="arrow">→</span><span class="trait">Perspectivă</span></div>
-            <div class="archetype"><span class="name">Hipopotamul</span><span class="arrow">→</span><span class="trait">Echilibru</span></div>
-            <div class="archetype"><span class="name">Leul</span><span class="arrow">→</span><span class="trait">Curaj</span></div>
+            <div class="archetype"><span class="name">Instagram</span><span class="arrow">→</span><span class="trait">Momente</span></div>
+            <div class="archetype"><span class="name">TikTok</span><span class="arrow">→</span><span class="trait">Atenție</span></div>
+            <div class="archetype"><span class="name">Strava</span><span class="arrow">→</span><span class="trait">Mișcare</span></div>
+            <div class="archetype"><span class="name">Notion</span><span class="arrow">→</span><span class="trait">Task-uri</span></div>
+            <div class="archetype"><span class="name">Jurnalele</span><span class="arrow">→</span><span class="trait">Gânduri</span></div>
+            <div class="archetype"><span class="name">Travel apps</span><span class="arrow">→</span><span class="trait">Locuri</span></div>
           </div>
-          <p class="pullquote">Gardienii sunt ghizii interiori ai Filmului Vieții.</p>
+          <p class="emph">GEC păstrează viața întreagă. Nu bucăți. Nu secunde. Ci continuitate.</p>
         </div>
       </div>
     </div>
@@ -300,91 +292,116 @@
 
   <div class="divider-orn"><span class="dot"></span></div>
 
-  <section class="statement">
-    <p class="reveal">Viața nu se trăiește în ani.<br/><span class="accent">Se trăiește în epoci.</span></p>
-  </section>
-
-  <!-- 3. Epocile -->
+  <!-- 3. Unde se așază GEC în ecosistem -->
   <section class="philo">
     <div class="wrap philo-inner">
       <div class="philo-card reveal">
         <div class="philo-head">
-          <span class="philo-icon">🔮</span>
-          <div><span class="step">Capitolul III</span><h2>Filosofia Epocilor</h2></div>
+          <span class="philo-icon">🌐</span>
+          <div><span class="step">Capitolul III</span><h2>Unde se așază GEC în ecosistem</h2></div>
         </div>
         <div class="philo-body">
-          <p>O epocă este:</p>
+          <p>GEC nu concurează cu nicio aplicație existentă.<br/>Se așază între:</p>
           <ul class="philo-list">
-            <li>o perioadă cu sens</li>
-            <li>o temă</li>
-            <li>o transformare</li>
-            <li>o etapă a identității</li>
+            <li>viață reală</li>
+            <li>explorare</li>
+            <li>memorie</li>
+            <li>identitate</li>
+            <li>comunitate</li>
+            <li>spațiu fizic</li>
+            <li>spațiu digital</li>
           </ul>
-          <p class="emph">GEC nu îți arată ce ai făcut. Îți arată cine ai devenit.</p>
+          <p class="pullquote">Și le leagă într-o singură experiență.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Ritualurile -->
-  <section class="philo">
-    <div class="wrap philo-inner">
-      <div class="philo-card reveal">
-        <div class="philo-head">
-          <span class="philo-icon">🔥</span>
-          <div><span class="step">Capitolul IV</span><h2>Filosofia Ritualurilor</h2></div>
-        </div>
-        <div class="philo-body">
-          <p class="emph">Ritualurile sunt podurile dintre epoci.</p>
-          <p>Ele:</p>
-          <ul class="philo-list">
-            <li>marchează trecerea</li>
-            <li>creează claritate</li>
-            <li>aduc sens</li>
-            <li>transformă haosul în ordine</li>
-          </ul>
-          <p class="pullquote">Ritualul nu este magie. Este structura emoțională a vieții.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Comunitatea -->
-  <section class="philo">
-    <div class="wrap philo-inner">
-      <div class="philo-card reveal">
-        <div class="philo-head">
-          <span class="philo-icon">🌍</span>
-          <div><span class="step">Capitolul V</span><h2>Filosofia Comunității</h2></div>
-        </div>
-        <div class="philo-body">
-          <p>Exploratorii nu sunt utilizatori. Sunt pelerini ai propriei vieți.</p>
-          <p class="emph">Comunitatea nu este socială. Este civilizațională.</p>
-          <p class="pullquote">World Caffè nu este un local. Este templul conversației.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Moștenirea -->
+  <!-- 4. De ce e foarte greu de replicat -->
   <section class="philo">
     <div class="wrap philo-inner">
       <div class="philo-card reveal">
         <div class="philo-head">
           <span class="philo-icon">🏛️</span>
-          <div><span class="step">Capitolul VI</span><h2>Filosofia Moștenirii</h2></div>
+          <div><span class="step">Capitolul IV</span><h2>De ce e foarte greu de replicat</h2></div>
         </div>
         <div class="philo-body">
-          <p class="emph">Viața nu este doar trăită. Este lăsată mai departe.</p>
-          <p>Filmul Vieții devine:</p>
+          <p>Pentru că GEC nu este o funcție.<br/>Este o <em>structură</em>.</p>
           <ul class="philo-list">
-            <li>moștenire</li>
-            <li>identitate</li>
-            <li>poveste</li>
-            <li>continuitate</li>
-            <li>dovada că ai trăit cu sens</li>
+            <li>Epocile</li>
+            <li>Gardienii</li>
+            <li>Filmul Vieții</li>
+            <li>Camera de Influență</li>
+            <li>Pionieratul</li>
+            <li>Jurnalele MistyTrip</li>
+            <li>World Café</li>
           </ul>
-          <p class="pullquote">GEC nu păstrează date. Păstrează viața.</p>
+          <p class="emph">Nu sunt features. Sunt instituții.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-orn"><span class="dot"></span></div>
+
+  <!-- 5. Ce oferă GEC -->
+  <section class="philo">
+    <div class="wrap philo-inner">
+      <div class="philo-card reveal">
+        <div class="philo-head">
+          <span class="philo-icon">✨</span>
+          <div><span class="step">Capitolul V</span><h2>Ce oferă GEC</h2></div>
+        </div>
+        <div class="philo-body">
+          <p>GEC oferă ceva rar în lumea modernă:</p>
+          <p class="emph">continuitate.</p>
+          <p>Nu atenție. Nu validare. Nu competiție. Nu presiune.</p>
+          <p class="pullquote">Doar un loc unde viața ta nu se pierde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <p class="reveal">Global Explorers Club este locul<br/>unde <span class="accent">viața devine poveste.</span></p>
+    <p class="small reveal">Prima infrastructură de memorie umană.</p>
+  </section>
+
+  <!-- Manifest -->
+  <section class="manifest">
+    <div class="stanza reveal">
+      <p>Nu suntem o aplicație.<br/>Suntem martorul vieții tale.</p>
+    </div>
+    <div class="stanza reveal">
+      <p>Nu te grăbim.<br/>Nu te comparăm.<br/>Nu te optimizăm.</p>
+    </div>
+    <div class="stanza reveal">
+      <p>Îți păstrăm epocile.<br/>Îți păstrăm gardienii.<br/>Îți păstrăm povestea.</p>
+    </div>
+    <div class="stanza reveal">
+      <p class="final">Ca să nu se piardă.</p>
+    </div>
+  </section>
+
+  <div class="divider-orn"><span class="dot"></span></div>
+
+  <!-- 8. Ecosistemul GEC -->
+  <section class="philo">
+    <div class="wrap philo-inner">
+      <div class="philo-card reveal">
+        <div class="philo-head">
+          <span class="philo-icon">🗺️</span>
+          <div><span class="step">Capitolul VI</span><h2>Ecosistemul GEC</h2></div>
+        </div>
+        <div class="philo-body">
+          <div class="archetype-grid">
+            <div class="archetype"><span class="name">GEC App</span><span class="arrow">→</span><span class="trait">Filmul Vieții</span></div>
+            <div class="archetype"><span class="name">MistyTrip</span><span class="arrow">→</span><span class="trait">Epoci fizice</span></div>
+            <div class="archetype"><span class="name">Check-in Global</span><span class="arrow">→</span><span class="trait">Explorare reală</span></div>
+            <div class="archetype"><span class="name">World Café</span><span class="arrow">→</span><span class="trait">Spațiu fizic</span></div>
+            <div class="archetype"><span class="name">Gardienii</span><span class="arrow">→</span><span class="trait">Martorii epocilor</span></div>
+            <div class="archetype"><span class="name">Camera de Influență</span><span class="arrow">→</span><span class="trait">Identitate</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -478,6 +495,7 @@
       dropdownToggle.addEventListener('click', function(e){ e.stopPropagation(); setDropdown(!dropdown.classList.contains('open')); });
       document.addEventListener('click', function(e){ if(!dropdown.contains(e.target)) setDropdown(false); });
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setDropdown(false); });
+
       var io = new IntersectionObserver(function(es){
         es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });

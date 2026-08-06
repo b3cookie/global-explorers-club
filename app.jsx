@@ -75,6 +75,8 @@ function Embers({ count = 18 }) {
 function Nav({ onWaitlist }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
+  const dropdownRef = useRef(null);
   useEffect(() => {
     const f = () => setScrolled(window.scrollY > 40);
     f(); window.addEventListener("scroll", f, { passive: true });
@@ -84,6 +86,14 @@ function Nav({ onWaitlist }) {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
+  useEffect(() => {
+    if (!exploreOpen) return;
+    const onDocClick = (e) => { if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setExploreOpen(false); };
+    const onEsc = (e) => { if (e.key === "Escape") setExploreOpen(false); };
+    document.addEventListener("click", onDocClick);
+    document.addEventListener("keydown", onEsc);
+    return () => { document.removeEventListener("click", onDocClick); document.removeEventListener("keydown", onEsc); };
+  }, [exploreOpen]);
   const close = () => setMenuOpen(false);
   return (
     <>
@@ -97,8 +107,24 @@ function Nav({ onWaitlist }) {
           <a href="#descoperi" className="nav-link-text">Ce descoperi</a>
           <a href="#drum" className="nav-link-text">Drumul eroului</a>
           <a href="#club" className="nav-link-text">Clubul</a>
-          <a href="/filosofia" className="nav-link-text">Filosofia</a>
-          <a href="/fundamentul-stiintific" className="nav-link-text">Fundamentul Științific</a>
+          <div className={`nav-dropdown${exploreOpen ? " open" : ""}`} ref={dropdownRef}>
+            <button
+              type="button"
+              className="nav-dropdown-toggle"
+              aria-expanded={exploreOpen}
+              onClick={() => setExploreOpen(o => !o)}
+            >
+              Explorează
+              <svg className="chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <div className="nav-dropdown-menu">
+              <div className="nav-dropdown-menu-inner">
+                <a href="/filosofia">Filosofia</a>
+                <a href="/fundamentul-stiintific">Fundamentul Științific</a>
+                <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
+              </div>
+            </div>
+          </div>
           <a className="btn btn-primary" href="#waitlist" onClick={onWaitlist}>Lista de așteptare</a>
         </div>
         <button
@@ -117,8 +143,10 @@ function Nav({ onWaitlist }) {
             <a href="#descoperi" onClick={close}>Ce descoperi</a>
             <a href="#drum" onClick={close}>Drumul eroului</a>
             <a href="#club" onClick={close}>Clubul</a>
+            <span className="mobile-nav-label">Explorează</span>
             <a href="/filosofia" onClick={close}>Filosofia</a>
             <a href="/fundamentul-stiintific" onClick={close}>Fundamentul Științific</a>
+            <a href="/locul-gec-in-lume" onClick={close}>Locul GEC în Lume</a>
           </nav>
           <a className="btn btn-primary mobile-menu-cta" href="#waitlist" onClick={() => { close(); onWaitlist && onWaitlist(); }}>
             Lista de așteptare <Arrow />
@@ -528,6 +556,7 @@ function Footer() {
             <a href="#club">Clubul</a>
             <a href="/filosofia">Filosofia</a>
             <a href="/fundamentul-stiintific">Fundamentul Științific</a>
+            <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
           </div>
           <div className="footer-col">
             <h5>Comunitate</h5>
