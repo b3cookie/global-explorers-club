@@ -515,12 +515,13 @@ section{ position:relative; }
   background:linear-gradient(180deg, rgba(4,6,15,0.15) 0%, rgba(4,6,15,0.35) 45%, rgba(4,6,15,0.94) 100%);
 }
 .chapter-body{ position:relative; z-index:2; padding:34px 30px 36px; }
-.chapter-num{ font-family:var(--sans); font-size:0.7rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
-.chapter h3{ font-size:clamp(1.55rem,1.7vw,1.8rem); margin-bottom:12px; }
+.chapter-num{ font-family:var(--sans); font-size:0.7rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.chapter h3{ font-size:clamp(1.55rem,1.7vw,1.8rem); line-height:1.25; margin-bottom:12px; }
 .chapter-tagline{
   font-family:var(--serif); font-style:italic;
   font-size:0.9rem; color:var(--amber-soft); line-height:1.4;
   max-width:34ch; margin-top:10px; opacity:0.82;
+  min-height:2.8em; display:flex; align-items:flex-start;
 }
 .chapter-desc{
   font-size:0.88rem; color:var(--text-dim); line-height:1.65; max-width:34ch;
