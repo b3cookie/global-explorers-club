@@ -222,10 +222,12 @@ section{ position:relative; }
 }
 .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text); }
 .brand .mark{
-  width:34px; height:34px; flex:none;
+  width:44px; height:40px; flex:none;
   display:grid; place-items:center;
 }
 .brand .mark svg{ width:100%; height:100%; }
+.brand .mark img{ width:100%; height:100%; object-fit:contain; display:block; }
+@media (max-width:520px){ .brand .mark{ width:38px; height:34px; } }
 .brand .name{
   font-family:var(--serif); font-size:1.32rem; font-weight:600; letter-spacing:0.01em; line-height:1;
 }
@@ -741,12 +743,11 @@ section{ position:relative; }
 /* success state */
 .form-success{ text-align:center; padding:14px 6px; }
 .form-success .seal{
-  width:84px; height:84px; margin:0 auto 22px; border-radius:50%;
+  width:84px; height:78px; margin:0 auto 22px;
   display:grid; place-items:center; color:var(--gold-bright);
-  background:radial-gradient(circle at 50% 40%, rgba(240,179,94,0.18), rgba(8,12,26,0.4));
-  border:1px solid var(--line-gold); box-shadow:var(--glow-gold);
   animation:sealPop .7s var(--ease) both;
 }
+.form-success .seal img{ width:100%; height:100%; object-fit:contain; display:block; }
 @keyframes sealPop{ 0%{ transform:scale(0.6); opacity:0;} 60%{ transform:scale(1.08);} 100%{ transform:scale(1); opacity:1;} }
 .form-success h3{ font-size:1.9rem; margin-bottom:12px; }
 .form-success p{ color:var(--text-dim); font-size:0.96rem; max-width:38ch; margin:0 auto; }

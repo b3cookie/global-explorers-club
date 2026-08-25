@@ -114,7 +114,7 @@
     var m = overlay.querySelector(".contact-modal");
     m.innerHTML = CLOSE +
       '<div class="form-success">' +
-        '<div class="seal"><img src="/assets/logo.jpg" alt="Global Explorers Club" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block" /></div>' +
+        '<div class="seal"><img src="/assets/logo.png?v=3" alt="Global Explorers Club" /></div>' +
         '<h3 id="wl-title">Bine ai venit, ' + (esc(d.prenume) || "exploratorule") + '.</h3>' +
         '<p>Ești pe lista fondatorilor. Primul mesaj ajunge la <strong style="color:var(--amber-soft)">' + esc(d.email) + '</strong> în curând.</p>' +
         '<div class="next">' +

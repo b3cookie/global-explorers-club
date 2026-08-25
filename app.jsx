@@ -14,8 +14,8 @@ const Play = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
 );
 
-const OwlMark = ({ size = 34 }) => (
-  <img src="assets/logo.jpg" alt="Global Explorers Club logo" style={{ width: size, height: size, borderRadius: "50%", objectFit: "cover", display: "block" }} />
+const BrandMark = () => (
+  <img src="assets/logo.png?v=3" alt="Global Explorers Club logo" />
 );
 
 function Reveal({ children, className = "", delay = "", as: Tag = "div", ...rest }) {
@@ -99,7 +99,7 @@ function Nav({ onWaitlist }) {
     <>
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
         <a className="brand" href="#top" onClick={close}>
-          <span className="mark"><OwlMark /></span>
+          <span className="mark"><BrandMark /></span>
           <span className="name">Global Explorers<small>Club</small></span>
         </a>
         <div className="nav-links">
@@ -460,7 +460,7 @@ function Finale() {
               </form>
             ) : (
               <div className="form-success">
-                <div className="seal"><OwlMark size={64} /></div>
+                <div className="seal"><BrandMark /></div>
                 <h3>Bine ai venit, {form.prenume || "exploratorule"}.</h3>
                 <p>Ești pe lista fondatorilor. Primul mesaj ajunge la <strong style={{color:"var(--amber-soft)"}}>{form.email}</strong> în curând.</p>
                 <div className="next">
@@ -545,7 +545,7 @@ function Footer() {
         <div className="footer-grid">
           <div>
             <a className="brand" href="#top">
-              <span className="mark"><OwlMark /></span>
+              <span className="mark"><BrandMark /></span>
               <span className="name">Global Explorers<small>Club</small></span>
             </a>
             <p className="footer-about">O comunitate pentru cei care trăiesc cu intenție.</p>
