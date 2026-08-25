@@ -120,6 +120,7 @@ function Nav({ onWaitlist }) {
             <div className="nav-dropdown-menu">
               <div className="nav-dropdown-menu-inner">
                 <a href="/filosofia">Filosofia</a>
+                <a href="/de-ce-facem-asta">De ce facem asta</a>
                 <a href="/fundamentul-stiintific">Fundamentul Științific</a>
                 <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
               </div>
@@ -145,6 +146,7 @@ function Nav({ onWaitlist }) {
             <a href="#club" onClick={close}>Clubul</a>
             <span className="mobile-nav-label">Explorează</span>
             <a href="/filosofia" onClick={close}>Filosofia</a>
+            <a href="/de-ce-facem-asta" onClick={close}>De ce facem asta</a>
             <a href="/fundamentul-stiintific" onClick={close}>Fundamentul Științific</a>
             <a href="/locul-gec-in-lume" onClick={close}>Locul GEC în Lume</a>
           </nav>
@@ -555,6 +557,7 @@ function Footer() {
             <a href="#drum">Drumul eroului</a>
             <a href="#club">Clubul</a>
             <a href="/filosofia">Filosofia</a>
+            <a href="/de-ce-facem-asta">De ce facem asta</a>
             <a href="/fundamentul-stiintific">Fundamentul Științific</a>
             <a href="/locul-gec-in-lume">Locul GEC în Lume</a>
           </div>

@@ -10,7 +10,9 @@ app.jsx                         Aplicația React (toate secțiunile și formular
 styles.css                      Design system complet (variabile CSS, responsive)
 waitlist.js                     Popup-ul de înscriere, partajat pe toate paginile
 filosofia.html                  Pagina „Filosofia” (/filosofia)
+de-ce-facem-asta.html           Pagina „De ce facem asta” (/de-ce-facem-asta)
 fundamentul-stiintific.html     Pagina „Fundamentul Științific” (/fundamentul-stiintific)
+locul-gec-in-lume.html          Pagina „Locul GEC în Lume” (/locul-gec-in-lume)
 assets/                         Imagini de producție
 favicon-*.png / apple-touch     Set complet de favicon PNG (emblema owl aurie)
 site.webmanifest                Manifest PWA (iconuri, temă)
@@ -20,9 +22,28 @@ politica-confidentialitate.html Politică de confidențialitate
 termeni-conditii.html           Termeni și condiții
 ```
 
-Rutele curate (`/filosofia`, `/fundamentul-stiintific`, `/politica-confidentialitate`,
-`/termeni-conditii`) funcționează pe Vercel prin `cleanUrls`. Local, deschide fișierele
-`.html` direct.
+Rutele curate (`/filosofia`, `/de-ce-facem-asta`, `/fundamentul-stiintific`,
+`/locul-gec-in-lume`, `/politica-confidentialitate`, `/termeni-conditii`) funcționează pe
+Vercel prin `cleanUrls`. Local, deschide fișierele `.html` direct.
+
+## Cele patru pagini „Explorează”
+
+Paginile de conținut formează un singur argument, în ordine:
+
+| # | Pagină | Întrebarea la care răspunde |
+| - | ------ | --------------------------- |
+| 01 | Filosofia | În ce credem? |
+| 02 | De ce facem asta | De ce e nevoie de GEC? |
+| 03 | Fundamentul Științific | De ce credem că funcționează? |
+| 04 | Locul GEC în Lume | Ce construim și unde se încadrează? |
+
+Ordinea este vizibilă pentru cititor prin banda `.chain` de sub hero (prezentă pe toate
+cele patru pagini) și prin cardul `.page-next` de la finalul fiecăreia. Ambele componente
+sunt definite o singură dată, în `styles.css`.
+
+Când se adaugă o pagină nouă în acest lanț, meniul trebuie actualizat în **toate** locurile:
+`app.jsx` (dropdown desktop, meniu mobil, footer) și, în fiecare `.html`, aceleași trei
+blocuri. Plus banda `.chain` din fiecare pagină.
 
 ## Rulare locală
 
