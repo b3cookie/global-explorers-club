@@ -211,11 +211,19 @@ section{ position:relative; }
   padding:22px clamp(20px,4vw,52px);
   transition:background .5s, backdrop-filter .5s, padding .5s, border-color .5s;
   border-bottom:1px solid transparent;
-  /* the hero photo is bright at the top, so the bar keeps its own scrim.
-     No blur while the bar is transparent: the blurred area would end in a
-     hard seam across the photo. The scrolled state blurs a solid bar. */
-  background:linear-gradient(180deg, rgba(4,6,15,0.88) 0%, rgba(4,6,15,0.55) 60%, transparent 100%);
 }
+/* The hero photo is bright at the top, so the bar needs a scrim. It lives on
+   a pseudo-element that hangs below the bar: painted on the bar itself, the
+   gradient would stop at the bar's fractional bottom edge (86.47px) and that
+   layer boundary draws a hairline across the photo. Down here the gradient is
+   already fully transparent long before the element ends. */
+.nav::before{
+  content:""; position:absolute; inset:0 0 -40px 0; z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg, rgba(4,6,15,0.88) 0%, rgba(4,6,15,0.55) 42%, transparent 100%);
+  transition:opacity .5s;
+}
+.nav.scrolled::before{ opacity:0; }
 .nav.scrolled{
   background:rgba(6,10,22,0.72);
   backdrop-filter:blur(14px);
