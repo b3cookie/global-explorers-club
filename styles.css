@@ -492,29 +492,34 @@ section{ position:relative; }
 @keyframes wheel{ 0%{ opacity:0; top:7px;} 30%{opacity:1;} 70%{ opacity:1; top:18px;} 100%{ opacity:0; top:18px;} }
 
 @media (max-width:760px){
-  /* A portrait screen can't hold a 1.9:1 frame, and cropping into it left the
-     text sitting on someone's face. The photo becomes a band across the top,
-     nearly whole, and the words move below it onto clean dark. */
+  /* A portrait screen can't hold a 1.9:1 frame without cropping into it, and
+     the crop puts the words over someone's face. The photo keeps the whole
+     screen and the words move onto a translucent panel, which stays legible
+     wherever the image happens to be bright. */
   .hero{
-    --hero-img-h:clamp(260px, 38svh, 380px);
-    align-items:flex-start;
-    min-height:auto;
-    padding-bottom:clamp(48px, 8vh, 80px);
+    min-height:100svh;
+    align-items:center;
+    padding-bottom:clamp(40px, 7vh, 70px);
   }
-  .hero-bg{
-    inset:0 0 auto 0; height:var(--hero-img-h);
-    background-position:50% 38%;
-  }
-  .hero-content{
-    padding-top:calc(var(--hero-img-h) + clamp(18px, 4vh, 34px));
-    padding-bottom:0;
-    max-width:100%;
-  }
+  .hero-bg{ background-position:60% 34%; }
   .hero-scrim{
-    inset:0 0 auto 0; height:calc(var(--hero-img-h) + 40px);
     background:linear-gradient(180deg,
-      rgba(4,6,15,0.72) 0%, rgba(4,6,15,0.18) 34%,
-      rgba(4,6,15,0.55) 76%, var(--ink) 100%);
+      rgba(4,6,15,0.70) 0%, rgba(4,6,15,0.18) 26%,
+      rgba(4,6,15,0.55) 78%, var(--ink) 100%);
+  }
+  /* the panel is narrower than the screen, so the eyebrow tightens to keep
+     its one line */
+  .hero .eyebrow{ font-size:0.62rem; letter-spacing:0.2em; gap:0.6em; }
+  .hero .eyebrow::before,
+  .hero .eyebrow::after{ width:22px; }
+  .hero-content{
+    max-width:100%;
+    margin:clamp(72px, 12vh, 104px) 4px 0;
+    padding:26px 20px 30px;
+    border-radius:22px;
+    background:rgba(6,9,20,0.62);
+    border:1px solid rgba(214,162,74,0.22);
+    backdrop-filter:blur(14px);
   }
 }
 @media (max-width:520px){
