@@ -492,20 +492,29 @@ section{ position:relative; }
 @keyframes wheel{ 0%{ opacity:0; top:7px;} 30%{opacity:1;} 70%{ opacity:1; top:18px;} 100%{ opacity:0; top:18px;} }
 
 @media (max-width:760px){
-  /* portrait screens can't fit the full frame: go full-height and move the
-     crop onto the explorer on the right */
-  .hero{ align-items:flex-start; padding-bottom:0; min-height:100svh; }
-  .hero-bg{ background-position:72% 36%; }
+  /* A portrait screen can't hold a 1.9:1 frame, and cropping into it left the
+     text sitting on someone's face. The photo becomes a band across the top,
+     nearly whole, and the words move below it onto clean dark. */
+  .hero{
+    --hero-img-h:clamp(260px, 38svh, 380px);
+    align-items:flex-start;
+    min-height:auto;
+    padding-bottom:clamp(48px, 8vh, 80px);
+  }
+  .hero-bg{
+    inset:0 0 auto 0; height:var(--hero-img-h);
+    background-position:50% 38%;
+  }
   .hero-content{
-    padding-top:clamp(88px,17vh,120px);
-    padding-bottom:clamp(72px,12vh,100px);
+    padding-top:calc(var(--hero-img-h) + clamp(18px, 4vh, 34px));
+    padding-bottom:0;
     max-width:100%;
   }
   .hero-scrim{
-    background:
-      linear-gradient(180deg, rgba(4,6,15,0.78) 0%, rgba(4,6,15,0.25) 26%, rgba(4,6,15,0.12) 40%),
-      linear-gradient(0deg, var(--ink) 2%, rgba(4,6,15,0.60) 22%, transparent 48%),
-      radial-gradient(90% 55% at 50% 42%, rgba(4,6,15,0.60), transparent 78%);
+    inset:0 0 auto 0; height:calc(var(--hero-img-h) + 40px);
+    background:linear-gradient(180deg,
+      rgba(4,6,15,0.72) 0%, rgba(4,6,15,0.18) 34%,
+      rgba(4,6,15,0.55) 76%, var(--ink) 100%);
   }
 }
 @media (max-width:520px){
