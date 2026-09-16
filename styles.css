@@ -211,9 +211,10 @@ section{ position:relative; }
   padding:22px clamp(20px,4vw,52px);
   transition:background .5s, backdrop-filter .5s, padding .5s, border-color .5s;
   border-bottom:1px solid transparent;
-  /* the hero photo is bright at the top, so the bar keeps its own scrim */
+  /* the hero photo is bright at the top, so the bar keeps its own scrim.
+     No blur while the bar is transparent: the blurred area would end in a
+     hard seam across the photo. The scrolled state blurs a solid bar. */
   background:linear-gradient(180deg, rgba(4,6,15,0.88) 0%, rgba(4,6,15,0.55) 60%, transparent 100%);
-  backdrop-filter:blur(6px);
 }
 .nav.scrolled{
   background:rgba(6,10,22,0.72);
