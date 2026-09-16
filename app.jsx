@@ -18,6 +18,24 @@ const BrandMark = () => (
   <img src="assets/logo.png?v=3" alt="Global Explorers Club logo" />
 );
 
+// The looping mark. The still PNG is the reduced-motion / no-codec fallback,
+// and doubles as the video's poster so a blank box is never possible.
+const BrandMarkAnimated = ({ alt = "Global Explorers Club logo" }) => (
+  <>
+    <video
+      className="mark-anim"
+      // React sets muted as a property only; Safari's autoplay policy wants the attribute
+      ref={(el) => { if (el) { el.muted = true; el.setAttribute("muted", ""); } }}
+      autoPlay muted loop playsInline preload="auto"
+      poster="assets/logo.png?v=3" aria-hidden="true"
+    >
+      <source src="assets/logo-anim.webm?v=1" type="video/webm" />
+      <source src="assets/logo-anim.mp4?v=1" type="video/mp4" />
+    </video>
+    <img className="mark-still" src="assets/logo.png?v=3" alt={alt} />
+  </>
+);
+
 function Reveal({ children, className = "", delay = "", as: Tag = "div", ...rest }) {
   const ref = useRef(null);
   useEffect(() => {
@@ -99,7 +117,7 @@ function Nav({ onWaitlist }) {
     <>
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
         <a className="brand" href="#top" onClick={close}>
-          <span className="mark"><BrandMark /></span>
+          <span className="mark"><BrandMarkAnimated /></span>
           <span className="name">Global Explorers<small>Club</small></span>
         </a>
         <div className="nav-links">
@@ -161,36 +179,22 @@ function Nav({ onWaitlist }) {
 }
 
 function Hero() {
-  const bgRef = useRef(null), owlRef = useRef(null), glowRef = useRef(null);
-  useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const y = window.scrollY;
-        if (y > window.innerHeight * 1.2) return;
-        if (bgRef.current) bgRef.current.style.transform = `translate3d(0, ${y * 0.22}px, 0) scale(1.06)`;
-        if (owlRef.current) owlRef.current.style.transform = `translate3d(0, ${y * 0.09}px, 0)`;
-        if (glowRef.current) glowRef.current.style.transform = `translate3d(0, ${y * 0.14}px, 0)`;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  /* The hero photo is shown whole (no crop, no parallax scale), so there is
+     no overscan to move — the frame stays put while the page scrolls. */
   return (
     <header className="hero vignette" id="top">
-      <div className="hero-bg" ref={bgRef} />
+      <div className="hero-bg" />
       <div className="hero-scrim" />
-      <div className="hero-glow" ref={glowRef} />
-      <div className="hero-owl" ref={owlRef}><img src="assets/owl.jpg" alt="Bufnița, emblema Global Explorers Club" /></div>
       <Embers count={20} />
       <div className="wrap">
         <div className="hero-content">
-          <span className="eyebrow">Comunitate prin invitație · 2026</span>
-          <h1 className="display">
-            <span className="line"><span>Viața ta nu e o galerie.</span></span>
-            <span className="line"><span className="italic-accent" style={{fontStyle:"italic"}}>E un film.</span></span>
-          </h1>
+          <span className="eyebrow centered">Comunitate prin invitație · 2026</span>
+          <div className="hero-lockup">
+            <h1 className="display">
+              <span className="line"><span>Viața ta nu e o galerie.</span></span>
+              <span className="line"><span className="italic-accent" style={{fontStyle:"italic"}}>E un film.</span></span>
+            </h1>
+          </div>
           <p className="lead">
             Global Explorers Club este locul unde oamenii nu se mai mulțumesc să privească.
             Experiențele, provocările, visele: toate devin parte din aceeași poveste.
