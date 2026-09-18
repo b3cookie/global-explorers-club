@@ -492,35 +492,27 @@ section{ position:relative; }
 @keyframes wheel{ 0%{ opacity:0; top:7px;} 30%{opacity:1;} 70%{ opacity:1; top:18px;} 100%{ opacity:0; top:18px;} }
 
 @media (max-width:760px){
-  /* A portrait screen can't hold a 1.9:1 frame without cropping into it, and
-     the crop puts the words over someone's face. The photo keeps the whole
-     screen and the words move onto a translucent panel, which stays legible
-     wherever the image happens to be bright. */
+  /* A portrait screen can't hold a 1.9:1 frame, so it crops onto the explorer
+     on the right: his face reads large against the burning sky, the words sit
+     below him where the gradient has taken the picture down to near black. */
   .hero{
     min-height:100svh;
-    align-items:center;
-    padding-bottom:clamp(40px, 7vh, 70px);
+    align-items:flex-end;
+    padding-bottom:clamp(40px, 7vh, 72px);
   }
-  .hero-bg{ background-position:60% 34%; }
+  .hero-bg{ background-position:79% 18%; }
   .hero-scrim{
     background:linear-gradient(180deg,
-      rgba(4,6,15,0.70) 0%, rgba(4,6,15,0.18) 26%,
-      rgba(4,6,15,0.55) 78%, var(--ink) 100%);
+      rgba(4,6,15,0.76) 0%, rgba(4,6,15,0.10) 16%, rgba(4,6,15,0.30) 32%,
+      rgba(4,6,15,0.80) 54%, rgba(4,6,15,0.95) 68%, var(--ink) 84%);
   }
-  /* the panel is narrower than the screen, so the eyebrow tightens to keep
-     its one line */
-  .hero .eyebrow{ font-size:0.62rem; letter-spacing:0.2em; gap:0.6em; }
-  .hero .eyebrow::before,
-  .hero .eyebrow::after{ width:22px; }
-  .hero-content{
-    max-width:100%;
-    margin:clamp(72px, 12vh, 104px) 4px 0;
-    padding:26px 20px 30px;
-    border-radius:22px;
-    background:rgba(6,9,20,0.62);
-    border:1px solid rgba(214,162,74,0.22);
-    backdrop-filter:blur(14px);
-  }
+  /* the eyebrow and the headline cross the lit clouds, where a scrim heavy
+     enough to hold them would flatten the sky — a shadow does it instead */
+  .hero .eyebrow{ text-shadow:0 1px 12px rgba(4,6,15,0.95), 0 0 26px rgba(4,6,15,0.8); }
+  .hero h1{ text-shadow:0 2px 20px rgba(4,6,15,0.75); }
+  /* on a short phone the block is taller than the screen, so it keeps the
+     nav's height as padding — the words never slide under the bar */
+  .hero-content{ max-width:100%; padding-top:clamp(88px, 13vh, 120px); }
 }
 @media (max-width:520px){
   .hero-cta{ flex-direction:column; }
