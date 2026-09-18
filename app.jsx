@@ -244,7 +244,7 @@ function Story() {
           </div>
           <Reveal className="story-visual" delay="d1">
             <div className="story-portrait">
-              <img src="assets/card-com.jpg" alt="Poartă luminată sub clar de lună" loading="lazy" />
+              <img src="assets/story-heart.webp" alt="Inimă din peliculă de film cu busola G.E.C." loading="lazy" />
             </div>
             <div className="story-frame-line" />
             <div className="story-quote">
