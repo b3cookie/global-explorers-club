@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@380;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="styles.css?v=25" />
   <style>
     .legal-nav {
       position: sticky; top: 0; z-index: 100;
@@ -139,9 +139,16 @@
     </div>
 
     <div class="legal-section">
-      <h2>5. Cookie-uri</h2>
-      <p>Site-ul nostru folosește un număr minim de cookie-uri necesare pentru funcționarea corectă a paginii. Nu folosim cookie-uri de tracking publicitar sau rețele sociale de tip third-party.</p>
-      <p>Prin continuarea navigării pe site, ești de acord cu utilizarea acestor cookie-uri tehnice. Poți bloca sau șterge cookie-urile din setările browserului tău în orice moment.</p>
+      <h2>5. Cookie-uri și tehnologii de urmărire</h2>
+      <p>Folosim trei categorii de cookie-uri. Prima este activă mereu; celelalte două pornesc <strong>numai după ce le accepți explicit</strong>.</p>
+      <ul>
+        <li><strong>Necesare</strong> (mereu active): fac site-ul să funcționeze. Aici intră preferința ta de cookie-uri, salvată local în browser, și funcționarea formularului de înscriere. Nu urmăresc nimic și nu pleacă spre terți.</li>
+        <li><strong>Analiză</strong> (opțional): <strong>Google Analytics 4</strong>, cu adresa IP anonimizată. Ne arată câți oameni citesc fiecare pagină și unde renunță, ca să scriem mai bine. Nu te identifică personal.</li>
+        <li><strong>Marketing</strong> (opțional): <strong>Meta Pixel</strong> (Facebook și Instagram). Măsoară câți dintre cei care ajung la noi dintr-un anunț se înscriu, ca să nu cheltuim bugetul degeaba. Meta poate folosi aceste date pentru afișarea de reclame.</li>
+      </ul>
+      <p>La prima vizită primești o casetă cu trei opțiuni: <em>Accept toate</em>, <em>Doar necesare</em> și <em>Setări</em>, unde poți bifa separat fiecare categorie. Refuzul e la fel de simplu ca acceptul, iar site-ul funcționează integral fără cookie-uri opționale.</p>
+      <p>Îți poți schimba alegerea oricând, din linkul <strong>„Setări cookie-uri"</strong> din footerul fiecărei pagini. Îți cerem din nou consimțământul după 12 luni. Poți, în plus, bloca sau șterge cookie-urile direct din setările browserului.</p>
+      <p><strong>Temeiul legal</strong> pentru cookie-urile de analiză și marketing este consimțământul tău (art. 6 alin. 1 lit. a GDPR). Pentru cele necesare, interesul legitim de a livra un site funcțional (art. 6 alin. 1 lit. f).</p>
     </div>
 
     <div class="legal-section">
@@ -150,6 +157,8 @@
       <ul>
         <li><strong>Google Fonts</strong>: tipografie. Google poate colecta date tehnice minime la încărcarea fonturilor.</li>
         <li><strong>Google Apps Script</strong>: procesarea formularului de înscriere. Datele sunt transmise securizat și stocate într-un tabel Google Sheets accesat exclusiv de echipa noastră.</li>
+        <li><strong>Vercel</strong>: găzduirea site-ului și statistici agregate de trafic, fără cookie-uri și fără identificarea vizitatorilor.</li>
+        <li><strong>Google Analytics 4</strong> și <strong>Meta Pixel</strong>: numai cu acceptul tău, conform secțiunii 5. Ambele sunt servicii cu sediul în afara UE; transferul se face pe baza Cadrului UE-SUA privind confidențialitatea datelor și a clauzelor contractuale standard.</li>
       </ul>
       <p>Nu vindem, nu împrumutăm și nu schimbăm datele tale cu terți în scopuri comerciale.</p>
     </div>
@@ -198,11 +207,13 @@
       <a href="/fundamentul-stiintific">Fundamentul Științific</a>
       <a href="/politica-confidentialitate">Confidențialitate</a>
       <a href="/termeni-conditii">Termeni și condiții</a>
+      <a href="#" data-cookie-settings>Setări cookie-uri</a>
       <a href="/">Acasă</a>
     </div>
   </footer>
 
 
-  <script src="/waitlist.js?v=2" defer></script>
+  <script src="/consent.js?v=1" defer></script>
+  <script src="/waitlist.js?v=3" defer></script>
 </body>
 </html>

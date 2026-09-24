@@ -11,6 +11,11 @@
 
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbz7c3XgyTl9zhgFI3GgIV2myOJL0RtHJCotJoSemZRzrUGkoRFXrLB1_KvzMOKI4fdcIA/exec";
 
+  // Textul exact bifat la înscriere, trimis odată cu datele: GDPR cere să poți
+  // dovedi la ce a consimțit omul, nu doar că a consimțit.
+  // Aceeași formulare există și în app.jsx — schimbă-le pe amândouă.
+  var ACORD_TEXT = "Sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
+
   var ARROW = '<svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var TICK = '<svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
   var CLOSE = '<button class="contact-close" type="button" aria-label="Închide"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l10 10M11 1L1 11"/></svg></button>';
@@ -48,6 +53,18 @@
           '<label for="wl-capitol">Dacă ai fi avut acest sistem de la început, acesta al câtelea capitol ar fi? <span class="opt">(opțional)</span></label>' +
           '<textarea id="wl-capitol" rows="3" placeholder="Povestește-ne în câteva cuvinte…"></textarea>' +
         '</div>' +
+        '<div class="field check" data-f="acord">' +
+          '<label class="form-check" for="wl-acord">' +
+            '<input id="wl-acord" type="checkbox" />' +
+            '<span class="cc-box" aria-hidden="true"></span>' +
+            '<span class="form-check-text">' +
+              'Sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> ' +
+              'și cu <a href="/termeni-conditii" target="_blank" rel="noopener noreferrer">termenii și condițiile</a>, ' +
+              'și vreau să primesc pe email noutăți despre Global Explorers Club.' +
+            '</span>' +
+          '</label>' +
+          '<span class="err"></span>' +
+        '</div>' +
         '<button class="btn btn-primary" type="submit">' + SUBMIT + '</button>' +
         '<div class="form-error" hidden></div>' +
         '<div class="form-foot">' + TICK + ' Te poți dezabona oricând, cu un singur clic.</div>' +
@@ -81,13 +98,19 @@
       email: form.querySelector("#wl-email").value.trim(),
       capitol: form.querySelector("#wl-capitol").value.trim()
     };
+    var acord = form.querySelector("#wl-acord").checked;
 
     var valid = true;
     if (!data.prenume) { fieldErr("prenume", "Spune-ne cum te cheamă."); valid = false; } else fieldErr("prenume", "");
     if (!data.email) { fieldErr("email", "Avem nevoie de un email."); valid = false; }
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { fieldErr("email", "Emailul nu pare valid."); valid = false; }
     else fieldErr("email", "");
+    if (!acord) { fieldErr("acord", "Avem nevoie de acordul tău ca să te putem contacta."); valid = false; }
+    else fieldErr("acord", "");
     if (!valid) return;
+
+    data.acord = "da";
+    data.acord_text = ACORD_TEXT;
 
     var btn = form.querySelector('button[type="submit"]');
     var errBox = form.querySelector(".form-error");

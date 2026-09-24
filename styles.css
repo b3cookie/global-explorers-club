@@ -768,6 +768,21 @@ section{ position:relative; }
 .form-card .btn-primary{ width:100%; margin-top:8px; }
 .form-card .btn-primary:disabled{ opacity:0.65; cursor:progress; transform:none; box-shadow:0 8px 30px -8px rgba(214,162,74,0.45); }
 .form-error{ margin-top:14px; text-align:center; font-size:0.84rem; color:#e08a7c; }
+/* Acord obligatoriu în formularul de înscriere — reutilizează .cc-box.
+   Selectorul trebuie să bată `.field label` (0,1,1), care ar impune
+   display:block și majuscule peste textul acordului. */
+.field label.form-check{
+  display:flex; align-items:flex-start; gap:12px;
+  cursor:pointer; margin:0;
+  text-transform:none; letter-spacing:normal;
+  font-size:0.82rem; font-weight:400; color:var(--text-dim);
+}
+.form-check .cc-box{ margin-top:1px; }
+.form-check-text{ font-size:0.82rem; line-height:1.55; color:var(--text-dim); }
+.form-check-text a{ color:var(--gold-bright); text-decoration:underline; text-underline-offset:2px; }
+.form-check-text a:hover{ color:var(--amber-soft); }
+.field.check{ margin-bottom:20px; }
+.field.check.invalid .cc-box{ border-color:#c96a5a; box-shadow:0 0 0 4px rgba(201,106,90,0.12); }
 .form-foot{ margin-top:18px; text-align:center; font-size:0.78rem; color:var(--text-faint); }
 .form-foot .tick{ color:var(--gold); }
 
@@ -854,6 +869,104 @@ html.wl-lock{ overflow:hidden; }
 .contact-modal.waitlist .form-sub{ font-size:0.92rem; color:var(--text-faint); margin-bottom:24px; }
 .contact-modal.waitlist .btn-primary{ width:100%; margin-top:8px; }
 .contact-modal.waitlist .btn-primary:disabled{ opacity:0.65; cursor:progress; transform:none; box-shadow:0 8px 30px -8px rgba(214,162,74,0.45); }
+
+/* ===========================================================
+   CONSIMȚĂMÂNT COOKIE-URI — banner + panou de setări
+   Panoul reutilizează shell-ul .contact-overlay / .contact-modal.
+   =========================================================== */
+.cc-banner{
+  /* 190: peste navigație (100–120), dar sub modale (.contact-overlay, 200),
+     ca popup-ul de înscriere și panoul de setări să treacă peste banner. */
+  position:fixed; left:0; right:0; bottom:0; z-index:190;
+  background:rgba(6,9,22,0.92); backdrop-filter:blur(18px);
+  border-top:1px solid var(--line-gold);
+  box-shadow:0 -30px 80px -30px rgba(0,0,0,0.9);
+  padding:20px clamp(18px,4vw,40px);
+  transform:translateY(100%); opacity:0;
+  transition:transform .45s var(--ease), opacity .45s var(--ease);
+}
+.cc-banner.in{ transform:translateY(0); opacity:1; }
+.cc-inner{
+  max-width:var(--maxw); margin:0 auto;
+  display:flex; align-items:center; gap:clamp(20px,4vw,48px);
+  flex-wrap:wrap; justify-content:space-between;
+}
+.cc-copy{ flex:1 1 440px; min-width:0; }
+.cc-title{
+  font-family:var(--serif); font-size:1.15rem; font-weight:500;
+  color:var(--amber-soft); margin:0 0 4px;
+}
+.cc-text{ font-size:0.86rem; line-height:1.6; color:var(--text-dim); margin:0; max-width:74ch; }
+.cc-text a{ color:var(--gold-bright); text-decoration:underline; text-underline-offset:2px; }
+.cc-text a:hover{ color:var(--amber-soft); }
+.cc-actions{ display:flex; align-items:center; gap:12px; flex:none; flex-wrap:wrap; }
+.cc-actions .btn{ font-size:0.88rem; padding:0.9em 1.7em; }
+.cc-link{
+  background:none; border:none; cursor:pointer;
+  font-family:var(--sans); font-size:0.84rem; font-weight:500;
+  color:var(--text-faint); text-decoration:underline; text-underline-offset:3px;
+  padding:6px 4px; transition:color .3s;
+}
+.cc-link:hover{ color:var(--gold-bright); }
+
+/* ---- panoul de setări ---- */
+.cc-modal{ max-width:560px; max-height:calc(100vh - 40px); overflow-y:auto; }
+.cc-modal-title{
+  font-family:var(--serif); font-size:1.7rem; font-weight:500;
+  margin:2px 44px 6px 0; color:var(--text);
+}
+.cc-modal-sub{ font-size:0.9rem; color:var(--text-faint); margin:0 0 24px; }
+.cc-rows{ display:flex; flex-direction:column; gap:12px; }
+.cc-row{
+  display:flex; align-items:flex-start; gap:14px;
+  padding:16px 18px;
+  border:1px solid var(--line); border-radius:10px;
+  cursor:pointer; transition:border-color .3s, background .3s;
+}
+.cc-row:hover{ border-color:var(--line-gold); }
+.cc-row.is-locked{ cursor:default; opacity:0.72; }
+.cc-row.is-locked:hover{ border-color:var(--line); }
+.cc-row input, .form-check input{ position:absolute; opacity:0; width:0; height:0; }
+.cc-box{
+  flex:none; width:20px; height:20px; margin-top:2px;
+  border:1px solid rgba(200,210,228,0.34); border-radius:5px;
+  background:rgba(255,255,255,0.03);
+  display:grid; place-items:center;
+  transition:border-color .25s, background .25s;
+}
+.cc-box::after{
+  content:""; width:10px; height:6px;
+  border-left:2px solid #000; border-bottom:2px solid #000;
+  transform:rotate(-45deg) scale(0.4); transform-origin:center;
+  opacity:0; transition:opacity .2s, transform .25s var(--ease);
+}
+input:checked + .cc-box{
+  background:linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border-color:var(--gold);
+}
+input:checked + .cc-box::after{ opacity:1; transform:rotate(-45deg) scale(1); }
+input:focus-visible + .cc-box{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+.cc-row-copy{ display:flex; flex-direction:column; gap:4px; min-width:0; }
+.cc-row-title{ font-size:0.95rem; font-weight:600; color:var(--text); }
+.cc-row-title em{ font-style:normal; font-weight:400; color:var(--text-faint); font-size:0.85rem; }
+.cc-row-text{ font-size:0.84rem; line-height:1.55; color:var(--text-dim); }
+.cc-modal-actions{ display:flex; gap:12px; margin-top:24px; flex-wrap:wrap; }
+.cc-modal-actions .btn{ flex:1 1 auto; font-size:0.9rem; padding:0.95em 1.6em; }
+
+@media (max-width:760px){
+  .cc-banner{ padding:18px clamp(16px,5vw,24px); }
+  .cc-inner{ flex-direction:column; align-items:stretch; gap:16px; }
+  /* flex-basis devine înălțime pe coloană — fără reset, .cc-copy ar
+     rezerva 440px și bannerul ar acoperi tot ecranul telefonului. */
+  .cc-copy{ flex:0 1 auto; }
+  .cc-text{ font-size:0.82rem; }
+  .cc-actions{ justify-content:flex-start; gap:10px; }
+  .cc-actions .btn{ flex:1 1 0; min-width:0; }
+  .cc-link{ flex:1 1 100%; text-align:center; }
+}
+@media (prefers-reduced-motion:reduce){
+  .cc-banner{ transition:none; }
+}
 
 @media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:30px; } }
 @media (max-width:520px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }

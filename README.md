@@ -9,6 +9,7 @@ index.html                      Pagina principală
 app.jsx                         Aplicația React (toate secțiunile și formularul)
 styles.css                      Design system complet (variabile CSS, responsive)
 waitlist.js                     Popup-ul de înscriere, partajat pe toate paginile
+consent.js                      Banner + setări cookie-uri; încarcă Meta Pixel / GA
 filosofia.html                  Pagina „Filosofia” (/filosofia)
 de-ce-facem-asta.html           Pagina „De ce facem asta” (/de-ce-facem-asta)
 fundamentul-stiintific.html     Pagina „Fundamentul Științific” (/fundamentul-stiintific)
@@ -62,11 +63,51 @@ Endpoint-ul Google Apps Script este definit la începutul `app.jsx`:
 const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/.../exec";
 ```
 
-Fiecare înscriere devine un rând în Google Sheets: `Data | Prenume | Email | Capitol | Sursă`.
+Fiecare înscriere devine un rând în Google Sheets:
+`Data | Prenume | Email | Capitol | Sursă | Acord | Text acord`.
+
+Formularul are o bifă obligatorie de acord (politică + termeni). Fără ea, trimiterea
+e blocată în client, iar `doPost` respinge cererea pe server. Se salvează și **textul
+exact** bifat (`ACORD_TEXT`), fiindcă GDPR cere să poți dovedi *la ce* a consimțit
+omul, nu doar că a consimțit. Textul e definit identic în `app.jsx` și `waitlist.js` —
+dacă îl schimbi, schimbă-l în ambele.
+
+> **Atenție:** `google-apps-script.gs` din repo e doar copia de referință. Modificările
+> nu au efect până nu lipești scriptul în editorul Apps Script și faci **Deploy → New
+> deployment**. Până atunci, rândurile noi ajung în foaie fără coloanele de acord.
 
 Același formular este afișat inline în secțiunea `#waitlist` de pe pagina principală
 și, prin `waitlist.js`, ca popup deschis de orice buton „Lista de așteptare” de pe orice
 pagină. Fără JavaScript, butoanele fac fallback la secțiunea `#waitlist` de pe homepage.
+
+## Cookie-uri și tracking
+
+Tot ce ține de urmărire trece prin `consent.js`. **Niciun tracker nu se încarcă
+înainte de acceptul explicit al vizitatorului** — scripturile nu stau în HTML, ci
+sunt injectate din JS abia după alegere.
+
+| Categorie | Ce încarcă | Implicit |
+| --------- | ---------- | -------- |
+| Necesare  | nimic extern | mereu activ |
+| Analiză   | Google Analytics 4 | refuzat |
+| Marketing | Meta Pixel (`1338842268123550`) | refuzat |
+
+Alegerea se salvează în `localStorage` (`gec_consent`) și expiră după 12 luni.
+Linkul „Setări cookie-uri" din footerul fiecărei pagini redeschide panoul; orice
+element cu `data-cookie-settings` funcționează ca declanșator.
+
+**Ca să activezi Google Analytics**, completează `GA_ID` la începutul `consent.js`:
+
+```js
+var GA_ID = "G-XXXXXXXXXX";   // gol = GA nu se încarcă deloc
+```
+
+Google Consent Mode v2 e deja configurat (`default` toate refuzate → `update` la
+alegerea utilizatorului), deci GA pornește corect din prima.
+
+Când adaugi un tracker nou: adaugă-l într-o funcție `load*()` în `consent.js`,
+leagă-l de o categorie, apoi actualizează secțiunea 5 din
+`politica-confidentialitate.html`. Nu pune scripturi de tracking direct în HTML.
 
 ## Deployment — Staging & Production
 

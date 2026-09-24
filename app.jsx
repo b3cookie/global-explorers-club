@@ -2,6 +2,11 @@ const { useState, useEffect, useRef } = React;
 
 const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbz7c3XgyTl9zhgFI3GgIV2myOJL0RtHJCotJoSemZRzrUGkoRFXrLB1_KvzMOKI4fdcIA/exec";
 
+// Textul exact bifat la înscriere, trimis odată cu datele: GDPR cere să poți
+// dovedi la ce a consimțit omul, nu doar că a consimțit.
+// Aceeași formulare există și în waitlist.js — schimbă-le pe amândouă.
+const ACORD_TEXT = "Sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
+
 const Tick = (p) => (
   <svg className="tick" width={p.s||16} height={p.s||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" {...p}>
     <path d="M20 6 9 17l-5-5" />
@@ -383,17 +388,19 @@ function Club() {
 }
 
 function Finale() {
-  const [form, setForm] = useState({ prenume: "", email: "", capitol: "" });
+  const [form, setForm] = useState({ prenume: "", email: "", capitol: "", acord: false });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const setCheck = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.checked }));
   const validate = () => {
     const er = {};
     if (!form.prenume.trim()) er.prenume = "Spune-ne cum te cheamă.";
     if (!form.email.trim()) er.email = "Avem nevoie de un email.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = "Emailul nu pare valid.";
+    if (!form.acord) er.acord = "Avem nevoie de acordul tău ca să te putem contacta.";
     setErrors(er);
     return Object.keys(er).length === 0;
   };
@@ -412,6 +419,8 @@ function Finale() {
           prenume: form.prenume.trim(),
           email: form.email.trim(),
           capitol: form.capitol.trim(),
+          acord: "da",
+          acord_text: ACORD_TEXT,
         }).toString(),
       });
       setSent(true);
@@ -455,6 +464,18 @@ function Finale() {
                 <div className="field">
                   <label htmlFor="capitol">Dacă ai fi avut acest sistem de la început, acesta al câtelea capitol ar fi? <span className="opt">(opțional)</span></label>
                   <textarea id="capitol" rows={3} placeholder="Povestește-ne în câteva cuvinte…" value={form.capitol} onChange={set("capitol")} />
+                </div>
+                <div className={`field check ${errors.acord ? "invalid" : ""}`}>
+                  <label className="form-check" htmlFor="acord">
+                    <input id="acord" type="checkbox" checked={form.acord} onChange={setCheck("acord")} />
+                    <span className="cc-box" aria-hidden="true" />
+                    <span className="form-check-text">
+                      Sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> și
+                      cu <a href="/termeni-conditii" target="_blank" rel="noopener noreferrer">termenii și condițiile</a>, și vreau să primesc pe email
+                      noutăți despre Global Explorers Club.
+                    </span>
+                  </label>
+                  <span className="err">{errors.acord}</span>
                 </div>
                 <button className="btn btn-primary" type="submit" disabled={sending}>
                   {sending ? "Se trimite…" : <>Vreau să intru în poveste <Arrow /></>}
@@ -577,6 +598,7 @@ function Footer() {
             <a href="#" onClick={e => { e.preventDefault(); setContactOpen(true); }}>Contact</a>
             <a href="/politica-confidentialitate">Politică de confidențialitate</a>
             <a href="/termeni-conditii">Termeni și condiții</a>
+            <a href="#" data-cookie-settings>Setări cookie-uri</a>
           </div>
         </div>
         <div className="footer-bottom">
