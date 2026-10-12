@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@380;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="styles.css?v=27" />
   <style>
     .legal-nav {
       position: sticky; top: 0; z-index: 100;
@@ -67,6 +67,10 @@
     }
     .legal-section a { color: var(--gold-bright); text-decoration: none; }
     .legal-section a:hover { text-decoration: underline; }
+    .cc-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.9rem; }
+    .cc-table th, .cc-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--text-dim); vertical-align: top; }
+    .cc-table th { color: var(--text); font-weight: 600; }
+    @media (max-width: 560px) { .cc-table { display: block; overflow-x: auto; } }
     .legal-divider {
       border: none; border-top: 1px solid var(--line); margin: 48px 0;
     }
@@ -107,7 +111,7 @@
 
     <div class="legal-section">
       <h2>1. Cine suntem</h2>
-      <p>Global Explorers Club este o comunitate privată aflată în construcție, dedicată celor care vor să trăiască cu mai multă intenție. Operatorul datelor cu caracter personal este <strong>Global Explorers Club</strong>, cu sediul în România.</p>
+      <p>Global Explorers Club este o comunitate privată aflată în construcție, dedicată celor care vor să trăiască cu mai multă intenție. Operatorul datelor cu caracter personal este <strong>GLOBAL EXPLORERS HEAD SRL</strong>, CUI 55678214, nr. Reg. Com. J2026057135005 (EUID ROONRC.J2026057135005), cu sediul în Str. Barlogeni 63, Sectorul 1, București, cod 012783, România.</p>
       <p>Pentru orice întrebare legată de datele tale, ne poți contacta la: <a href="mailto:contact@globalexplorers.ro">contact@globalexplorers.ro</a></p>
     </div>
 
@@ -117,6 +121,7 @@
       <ul>
         <li>Prenumele tău</li>
         <li>Adresa de email</li>
+        <li>Confirmarea că ai cel puțin 18 ani (doar bifa, nu ne spui data nașterii)</li>
         <li>Opțional: un scurt text despre ce capitol din viața ta vrei să schimbi</li>
       </ul>
       <p>De asemenea, serverul nostru de hosting poate stoca automat date tehnice standard precum adresa IP, tipul de browser și paginile accesate. Aceste informații sunt anonime și nu sunt asociate cu identitatea ta.</p>
@@ -128,7 +133,8 @@
       <ul>
         <li>Gestionarea listei de așteptare pentru lansarea Global Explorers Club</li>
         <li>Trimiterea de actualizări săptămânale despre proiect</li>
-        <li>Comunicarea de invitații la experiențe și evenimente viitoare</li>
+        <li>Comunicarea de invitații la experiențe și evenimente viitoare
+        Măsurarea și optimizarea reclamelor noastre, numai cu acordul tău pentru cookie-uri</li>
       </ul>
       <p>Nu vom folosi datele tale în alt scop fără consimțământul tău explicit.</p>
     </div>
@@ -144,11 +150,20 @@
       <ul>
         <li><strong>Necesare</strong> (mereu active): fac site-ul să funcționeze. Aici intră preferința ta de cookie-uri, salvată local în browser, și funcționarea formularului de înscriere. Nu urmăresc nimic și nu pleacă spre terți.</li>
         <li><strong>Analiză</strong> (opțional): <strong>Google Analytics 4</strong>, cu adresa IP anonimizată. Ne arată câți oameni citesc fiecare pagină și unde renunță, ca să scriem mai bine. Nu te identifică personal.</li>
-        <li><strong>Marketing</strong> (opțional): <strong>Meta Pixel</strong> (Facebook și Instagram). Măsoară câți dintre cei care ajung la noi dintr-un anunț se înscriu, ca să nu cheltuim bugetul degeaba. Meta poate folosi aceste date pentru afișarea de reclame.</li>
+        <li><strong>Marketing</strong> (opțional): <strong>Meta Pixel</strong> (Facebook și Instagram) și <strong>TikTok Pixel</strong>. Măsoară câți dintre cei care ajung la noi dintr-un anunț se înscriu, ca să nu cheltuim bugetul degeaba. Meta și TikTok pot folosi aceste date pentru afișarea de reclame.</li>
       </ul>
-      <p>La prima vizită primești o casetă cu trei opțiuni: <em>Accept toate</em>, <em>Doar necesare</em> și <em>Setări</em>, unde poți bifa separat fiecare categorie. Refuzul e la fel de simplu ca acceptul, iar site-ul funcționează integral fără cookie-uri opționale.</p>
+      <p>La prima vizită primești o casetă cu trei opțiuni: <em>Accept</em>, <em>Refuz</em> și <em>Setări</em>, unde poți bifa separat fiecare categorie. Cele două butoane sunt la fel de vizibile. Refuzul e la fel de simplu ca acceptul, iar site-ul funcționează integral fără cookie-uri opționale.</p>
       <p>Îți poți schimba alegerea oricând, din linkul <strong>„Setări cookie-uri"</strong> din footerul fiecărei pagini. Îți cerem din nou consimțământul după 12 luni. Poți, în plus, bloca sau șterge cookie-urile direct din setările browserului.</p>
       <p><strong>Temeiul legal</strong> pentru cookie-urile de analiză și marketing este consimțământul tău (art. 6 alin. 1 lit. a GDPR). Pentru cele necesare, interesul legitim de a livra un site funcțional (art. 6 alin. 1 lit. f).</p>
+      <table class="cc-table">
+        <thead><tr><th>Cookie</th><th>Furnizor</th><th>Scop</th><th>Durată</th></tr></thead>
+        <tbody>
+          <tr><td>gec_consent</td><td>GEC (local în browser)</td><td>Necesar: reține alegerea ta</td><td>12 luni</td></tr>
+          <tr><td>_ga, _ga_*</td><td>Google Analytics</td><td>Analiză: vizitatori unici și pagini citite</td><td>până la 2 ani</td></tr>
+          <tr><td>_fbp</td><td>Meta Pixel</td><td>Marketing: măsurarea anunțurilor Meta</td><td>90 de zile</td></tr>
+          <tr><td>_ttp, ttclid</td><td>TikTok Pixel</td><td>Marketing: măsurarea anunțurilor TikTok</td><td>până la 13 luni</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="legal-section">
@@ -158,14 +173,15 @@
         <li><strong>Google Fonts</strong>: tipografie. Google poate colecta date tehnice minime la încărcarea fonturilor.</li>
         <li><strong>Google Apps Script</strong>: procesarea formularului de înscriere. Datele sunt transmise securizat și stocate într-un tabel Google Sheets accesat exclusiv de echipa noastră.</li>
         <li><strong>Vercel</strong>: găzduirea site-ului și statistici agregate de trafic, fără cookie-uri și fără identificarea vizitatorilor.</li>
-        <li><strong>Google Analytics 4</strong> și <strong>Meta Pixel</strong>: numai cu acceptul tău, conform secțiunii 5. Ambele sunt servicii cu sediul în afara UE; transferul se face pe baza Cadrului UE-SUA privind confidențialitatea datelor și a clauzelor contractuale standard.</li>
+        <li><strong>Google Analytics 4</strong>, <strong>Meta Pixel</strong> și <strong>TikTok Pixel</strong>: numai cu acceptul tău, conform secțiunii 5. Ambele sunt servicii cu sediul în afara UE; transferul se face pe baza Cadrului UE-SUA privind confidențialitatea datelor și a clauzelor contractuale standard.</li>
       </ul>
+      <p>Folosim și furnizori care lucrează în numele nostru (de exemplu pentru trimiterea de e-mailuri), pe baza unui contract care îi obligă să protejeze datele. Meta, TikTok și Google primesc date doar prin pixelii de mai sus, după acceptul tău.</p>
       <p>Nu vindem, nu împrumutăm și nu schimbăm datele tale cu terți în scopuri comerciale.</p>
     </div>
 
     <div class="legal-section">
       <h2>7. Cât timp păstrăm datele</h2>
-      <p>Datele tale sunt păstrate atât timp cât ești abonat la lista de așteptare sau până când ne ceri să le ștergem. La cerere, le ștergem complet în termen de 30 de zile.</p>
+      <p>Datele din lista de așteptare le păstrăm cât timp ești pe listă, dar cel mult 3 ani de la ultima interacțiune, sau până când ne ceri să le ștergem sau îți retragi acordul. Cookie-urile opționale expiră conform tabelului din secțiunea 5. La cerere, le ștergem complet în termen de 30 de zile.</p>
     </div>
 
     <div class="legal-section">
@@ -201,7 +217,7 @@
   </div>
 
   <footer class="legal-footer">
-    <p>© 2026 Global Explorers Club. Toate drepturile rezervate.</p>
+    <p>© 2026 GLOBAL EXPLORERS HEAD SRL · CUI 55678214 · Reg. Com. J2026057135005 · Sediu: Str. Barlogeni 63, Sector 1, București, 012783 · <a href="mailto:contact@globalexplorers.ro">contact@globalexplorers.ro</a></p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;">
       <a href="/filosofia">Filosofia</a>
       <a href="/fundamentul-stiintific">Fundamentul Științific</a>
@@ -214,6 +230,6 @@
 
 
   <script src="/consent.js?v=1" defer></script>
-  <script src="/waitlist.js?v=3" defer></script>
+  <script src="/waitlist.js?v=6" defer></script>
 </body>
 </html>

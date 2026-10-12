@@ -5,7 +5,7 @@ const WAITLIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbz7c3XgyTl9zh
 // Textul exact bifat la înscriere, trimis odată cu datele: GDPR cere să poți
 // dovedi la ce a consimțit omul, nu doar că a consimțit.
 // Aceeași formulare există și în waitlist.js — schimbă-le pe amândouă.
-const ACORD_TEXT = "Sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
+const ACORD_TEXT = "Am cel puțin 18 ani, sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
 
 const Tick = (p) => (
   <svg className="tick" width={p.s||16} height={p.s||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" {...p}>
@@ -388,25 +388,31 @@ function Club() {
 }
 
 function Finale() {
-  const [form, setForm] = useState({ prenume: "", email: "", capitol: "", acord: false });
+  const INTERESE = ["Călătorii și aventură","Provocări personale","Evenimente live","Povești ale membrilor","Dezvoltare personală"];
+  const [step, setStep] = useState(1);
+  const [form, setForm] = useState({ prenume: "", email: "", interese: [], acord: false });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const setCheck = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.checked }));
-  const validate = () => {
+  const toggleInt = (x) => setForm((f) => ({ ...f, interese: f.interese.includes(x) ? f.interese.filter((i) => i !== x) : [...f.interese, x] }));
+  const validate = (s) => {
     const er = {};
-    if (!form.prenume.trim()) er.prenume = "Spune-ne cum te cheamă.";
-    if (!form.email.trim()) er.email = "Avem nevoie de un email.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = "Emailul nu pare valid.";
-    if (!form.acord) er.acord = "Avem nevoie de acordul tău ca să te putem contacta.";
+    if (s === 1 && !form.prenume.trim()) er.prenume = "Spune-ne cum te cheamă.";
+    if (s === 2) {
+      if (!form.email.trim()) er.email = "Avem nevoie de un email.";
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = "Emailul nu pare valid.";
+    }
+    if (s === 3 && !form.acord) er.acord = "Bifează ca să confirmi că ai 18+ ani și ești de acord.";
     setErrors(er);
     return Object.keys(er).length === 0;
   };
   const submit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate(step)) return;
+    if (step < 3) { setStep(step + 1); return; }
     if (!WAITLIST_ENDPOINT) { setSent(true); return; }
     setSending(true);
     setSubmitError("");
@@ -418,7 +424,8 @@ function Finale() {
         body: new URLSearchParams({
           prenume: form.prenume.trim(),
           email: form.email.trim(),
-          capitol: form.capitol.trim(),
+          interese: form.interese.join(", "),
+          capitol: form.interese.join(", "),   // scriptul deployat salvează doar „capitol”
           acord: "da",
           acord_text: ACORD_TEXT,
         }).toString(),
@@ -451,47 +458,65 @@ function Finale() {
               <form onSubmit={submit} noValidate>
                 <div className="form-title">Intră pe lista de așteptare</div>
                 <div className="form-sub">Locuri fondatoare limitate. Fără spam, promis.</div>
-                <div className={`field ${errors.prenume ? "invalid" : ""}`}>
-                  <label htmlFor="prenume">Prenume</label>
-                  <input id="prenume" type="text" placeholder="Cum te cheamă?" value={form.prenume} onChange={set("prenume")} />
-                  <span className="err">{errors.prenume}</span>
+                <div className="chat" aria-live="polite">
+                  <div className="b q">Salut! Eu sunt de la Global Explorers Club. Cum te cheamă?</div>
+                  {step >= 2 && <><div className="b a">{form.prenume}</div><div className="b q">Mă bucur, {form.prenume.trim()}! Unde îți trimitem vestea?</div></>}
+                  {step >= 3 && <><div className="b a">{form.email}</div><div className="b q">Perfect. Ce te interesează? <span className="opt">(alege oricâte)</span></div></>}
                 </div>
-                <div className={`field ${errors.email ? "invalid" : ""}`}>
-                  <label htmlFor="email">Email</label>
-                  <input id="email" type="email" placeholder="nume@exemplu.ro" value={form.email} onChange={set("email")} />
-                  <span className="err">{errors.email}</span>
-                </div>
-                <div className="field">
-                  <label htmlFor="capitol">Dacă ai fi avut acest sistem de la început, acesta al câtelea capitol ar fi? <span className="opt">(opțional)</span></label>
-                  <textarea id="capitol" rows={3} placeholder="Povestește-ne în câteva cuvinte…" value={form.capitol} onChange={set("capitol")} />
-                </div>
-                <div className={`field check ${errors.acord ? "invalid" : ""}`}>
-                  <label className="form-check" htmlFor="acord">
-                    <input id="acord" type="checkbox" checked={form.acord} onChange={setCheck("acord")} />
-                    <span className="cc-box" aria-hidden="true" />
-                    <span className="form-check-text">
-                      Sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> și
-                      cu <a href="/termeni-conditii" target="_blank" rel="noopener noreferrer">termenii și condițiile</a>, și vreau să primesc pe email
-                      noutăți despre Global Explorers Club.
-                    </span>
-                  </label>
-                  <span className="err">{errors.acord}</span>
-                </div>
-                <button className="btn btn-primary" type="submit" disabled={sending}>
-                  {sending ? "Se trimite…" : <>Vreau să intru în poveste <Arrow /></>}
-                </button>
+                {step === 1 && (
+                  <div className={`field ${errors.prenume ? "invalid" : ""}`}>
+                    <div className="reply">
+                      <input id="prenume" type="text" aria-label="Prenume" placeholder="Numele tău" autoComplete="given-name" autoFocus value={form.prenume} onChange={set("prenume")} />
+                      <button className="btn btn-primary" type="submit" aria-label="Continuă"><Arrow /></button>
+                    </div>
+                    <span className="err">{errors.prenume}</span>
+                  </div>
+                )}
+                {step === 2 && (
+                  <div className={`field ${errors.email ? "invalid" : ""}`}>
+                    <div className="reply">
+                      <input id="email" type="email" aria-label="Email" placeholder="nume@exemplu.ro" autoComplete="email" autoFocus value={form.email} onChange={set("email")} />
+                      <button className="btn btn-primary" type="submit" aria-label="Continuă"><Arrow /></button>
+                    </div>
+                    <span className="err">{errors.email}</span>
+                  </div>
+                )}
+                {step === 3 && (
+                  <>
+                    <div className="chips">
+                      {INTERESE.map((x) => (
+                        <button type="button" key={x} className={`chip ${form.interese.includes(x) ? "on" : ""}`} aria-pressed={form.interese.includes(x)} onClick={() => toggleInt(x)}>{x}</button>
+                      ))}
+                    </div>
+                    <div className={`field check ${errors.acord ? "invalid" : ""}`}>
+                      <label className="form-check" htmlFor="acord">
+                        <input id="acord" type="checkbox" checked={form.acord} onChange={setCheck("acord")} />
+                        <span className="cc-box" aria-hidden="true" />
+                        <span className="form-check-text">
+                          Am cel puțin 18 ani, sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> și
+                          cu <a href="/termeni-conditii" target="_blank" rel="noopener noreferrer">termenii și condițiile</a>, și vreau să primesc pe email
+                          noutăți despre Global Explorers Club.
+                        </span>
+                      </label>
+                      <span className="err">{errors.acord}</span>
+                    </div>
+                    <button className="btn btn-primary" type="submit" disabled={sending}>
+                      {sending ? "Se trimite…" : <>Vreau să intru în poveste <Arrow /></>}
+                    </button>
+                  </>
+                )}
+                {step > 1 && <button type="button" className="step-back" onClick={() => { setErrors({}); setStep(step - 1); }}>← Înapoi</button>}
                 {submitError && <div className="form-error">{submitError}</div>}
-                <div className="form-foot"><Tick s={13} /> Te poți dezabona oricând, cu un singur clic.</div>
+                <div className="form-foot"><Tick s={13} /> Îți poți retrage acordul oricând, scriindu-ne la contact@globalexplorers.ro.</div>
               </form>
             ) : (
               <div className="form-success">
                 <div className="seal"><BrandMark /></div>
                 <h3>Bine ai venit, {form.prenume || "exploratorule"}.</h3>
-                <p>Ești pe lista fondatorilor. Primul mesaj ajunge la <strong style={{color:"var(--amber-soft)"}}>{form.email}</strong> în curând.</p>
+                <p>Ești pe lista fondatorilor. Te anunțăm pe <strong style={{color:"var(--amber-soft)"}}>{form.email}</strong> când deschidem porțile.</p>
                 <div className="next">
-                  <div className="row"><Tick /> Confirmare trimisă pe email</div>
                   <div className="row"><Tick /> Loc rezervat pe lista de așteptare</div>
-                  <div className="row"><Tick /> Primești update-urile săptămânale</div>
+                  <div className="row"><Tick /> Fără spam, doar vești de la noi</div>
                 </div>
               </div>
             )}
@@ -602,7 +627,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 Global Explorers Club. Toate poveștile rezervate.</p>
+          <p>© 2026 GLOBAL EXPLORERS HEAD SRL · CUI 55678214 · Reg. Com. J2026057135005 · Sediu: Str. Barlogeni 63, Sector 1, București, 012783 · <a href="mailto:contact@globalexplorers.ro">contact@globalexplorers.ro</a></p>
           <div className="footer-social">
             <Social label="Instagram" href="https://www.instagram.com/globalexplorersclub1/" d={<path d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.42.4.68.8.9 1.4.17.4.36 1 .42 2.2.06 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.06 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.4.42-.8.68-1.4.9-.4.17-1 .36-2.2.42-1.2.06-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.06-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.42.8-.68 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.43-1.3.83-.4.4-.63.8-.83 1.3-.16.4-.35 1-.4 2.1C2.6 9.7 2.6 10.1 2.6 12s0 2.3.07 3.5c.05 1.1.24 1.7.4 2.1.2.5.43.9.83 1.3.4.4.8.63 1.3.83.4.16 1 .35 2.1.4 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c1.1-.05 1.7-.24 2.1-.4.5-.2.9-.43 1.3-.83.4-.4.63-.8.83-1.3.16-.4.35-1 .4-2.1.07-1.2.07-1.6.07-3.5s0-2.3-.07-3.5c-.05-1.1-.24-1.7-.4-2.1a3.5 3.5 0 0 0-.83-1.3 3.5 3.5 0 0 0-1.3-.83c-.4-.16-1-.35-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.95a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/>} />
             <Social label="TikTok" href="https://www.tiktok.com/@globalexplorersclub1" d={<path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.3 0 .6.05.88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1Z"/>} />

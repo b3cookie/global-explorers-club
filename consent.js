@@ -18,6 +18,7 @@
 
   var META_PIXEL_ID = "1338842268123550";
   var GA_ID = "";              // ex. "G-XXXXXXXXXX" — gol = GA nu se încarcă
+  var TIKTOK_PIXEL_ID = "";    // ex. "C1ABC2DEF3..." — gol = TikTok Pixel nu se încarcă
 
   var STORE_KEY = "gec_consent";
   var STORE_VERSION = 1;
@@ -91,9 +92,31 @@
     gtag("config", GA_ID, { anonymize_ip: true });
   }
 
+  function loadTikTok() {
+    if (!TIKTOK_PIXEL_ID) return;
+    /* TikTok Pixel — snippet oficial, rulat abia după accept */
+    /* eslint-disable */
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+      ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
+      ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; };
+      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.load = function (e) {
+        var n = "https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._t = ttq._t || {}; ttq._t[e] = +new Date();
+        var o = d.createElement("script"); o.type = "text/javascript"; o.async = !0; o.src = n + "?sdkid=" + e + "&lib=" + t;
+        var a = d.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a);
+      };
+      ttq.load(TIKTOK_PIXEL_ID); ttq.page();
+    }(window, document, "ttq");
+    /* eslint-enable */
+  }
+
   function loadMarketing() {
-    if (loaded.marketing || !META_PIXEL_ID) return;
+    if (loaded.marketing) return;
     loaded.marketing = true;
+    loadTikTok();
+    if (!META_PIXEL_ID) return;
 
     /* Meta Pixel — snippet oficial, rulat abia după accept */
     /* eslint-disable */
@@ -155,13 +178,13 @@
           '<div class="cc-copy">' +
             '<p class="cc-title">Înainte să mergem mai departe</p>' +
             '<p class="cc-text">Folosim cookie-uri tehnice, necesare pentru funcționarea site-ului. ' +
-            'Cu acceptul tău, folosim și cookie-uri de analiză și de marketing (Meta, Google), ' +
+            'Cu acceptul tău, folosim și cookie-uri de analiză și de marketing (Meta, TikTok, Google), ' +
             'ca să înțelegem ce funcționează și cui merită să povestim despre GEC. ' +
             'Detalii în <a href="/politica-confidentialitate">politica de confidențialitate</a>.</p>' +
           '</div>' +
           '<div class="cc-actions">' +
-            '<button class="btn btn-primary cc-accept" type="button">Accept toate</button>' +
-            '<button class="btn btn-ghost cc-reject" type="button">Doar necesare</button>' +
+            '<button class="btn btn-primary cc-accept" type="button">Accept</button>' +
+            '<button class="btn btn-primary cc-reject" type="button">Refuz</button>' +
             '<button class="cc-link cc-settings" type="button">Setări</button>' +
           '</div>' +
         '</div>' +
@@ -233,12 +256,12 @@
                 "Google Analytics, anonimizat. Ne arată ce pagini se citesc și unde se pierde lumea, ca să le facem mai bune.",
                 c.analytics) +
             row("marketing", "Marketing",
-                "Meta Pixel. Măsoară ce anunțuri aduc oameni care rămân și ne ajută să nu risipim buget pe cine nu e interesat.",
+                "Meta Pixel și TikTok Pixel. Măsoară ce anunțuri aduc oameni care rămân și ne ajută să nu risipim buget pe cine nu e interesat.",
                 c.marketing) +
           '</div>' +
           '<div class="cc-modal-actions">' +
             '<button class="btn btn-primary cc-save" type="button">Salvează alegerea</button>' +
-            '<button class="btn btn-ghost cc-all" type="button">Accept toate</button>' +
+            '<button class="btn btn-primary cc-all" type="button">Accept</button>' +
           '</div>' +
         '</div>' +
       '</div>';

@@ -14,7 +14,7 @@
   // Textul exact bifat la înscriere, trimis odată cu datele: GDPR cere să poți
   // dovedi la ce a consimțit omul, nu doar că a consimțit.
   // Aceeași formulare există și în app.jsx — schimbă-le pe amândouă.
-  var ACORD_TEXT = "Sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
+  var ACORD_TEXT = "Am cel puțin 18 ani, sunt de acord cu politica de confidențialitate și cu termenii și condițiile, și vreau să primesc pe email noutăți despre Global Explorers Club.";
 
   var ARROW = '<svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var TICK = '<svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
@@ -34,41 +34,70 @@
     });
   }
 
-  function formHTML() {
-    return CLOSE +
-      '<div class="form-title" id="wl-title">Intră pe lista de așteptare</div>' +
-      '<div class="form-sub">Locuri fondatoare limitate. Fără spam, promis.</div>' +
-      '<form novalidate>' +
-        '<div class="field" data-f="prenume">' +
-          '<label for="wl-prenume">Prenume</label>' +
-          '<input id="wl-prenume" type="text" placeholder="Cum te cheamă?" autocomplete="given-name" />' +
-          '<span class="err"></span>' +
-        '</div>' +
-        '<div class="field" data-f="email">' +
-          '<label for="wl-email">Email</label>' +
-          '<input id="wl-email" type="email" placeholder="nume@exemplu.ro" autocomplete="email" />' +
-          '<span class="err"></span>' +
-        '</div>' +
-        '<div class="field">' +
-          '<label for="wl-capitol">Dacă ai fi avut acest sistem de la început, acesta al câtelea capitol ar fi? <span class="opt">(opțional)</span></label>' +
-          '<textarea id="wl-capitol" rows="3" placeholder="Povestește-ne în câteva cuvinte…"></textarea>' +
-        '</div>' +
+  var INTERESE = ["Călătorii și aventură","Provocări personale","Evenimente live","Povești ale membrilor","Dezvoltare personală"];
+  var step = 1, interese = [], vals = { prenume: "", email: "" };
+
+  function stepHTML() {
+    var chat = '<div class="chat" aria-live="polite"><div class="b q">Salut! Eu sunt de la Global Explorers Club. Cum te cheamă?</div>';
+    if (step >= 2) chat += '<div class="b a">' + esc(vals.prenume) + '</div><div class="b q">Mă bucur, ' + esc(vals.prenume) + '! Unde îți trimitem vestea?</div>';
+    if (step >= 3) chat += '<div class="b a">' + esc(vals.email) + '</div><div class="b q">Perfect. Ce te interesează? <span class="opt">(alege oricâte)</span></div>';
+    chat += '</div>';
+    var body = "";
+    if (step === 1) {
+      body = '<div class="field" data-f="prenume"><div class="reply">' +
+        '<input id="wl-prenume" type="text" aria-label="Prenume" placeholder="Numele tău" autocomplete="given-name" value="' + esc(vals.prenume) + '" />' +
+        '<button class="btn btn-primary" type="submit" aria-label="Continuă">' + ARROW + '</button></div><span class="err"></span></div>';
+    } else if (step === 2) {
+      body = '<div class="field" data-f="email"><div class="reply">' +
+        '<input id="wl-email" type="email" aria-label="Email" placeholder="nume@exemplu.ro" autocomplete="email" value="' + esc(vals.email) + '" />' +
+        '<button class="btn btn-primary" type="submit" aria-label="Continuă">' + ARROW + '</button></div><span class="err"></span></div>';
+    } else {
+      body = '<div class="chips">' +
+        INTERESE.map(function (x) {
+          var on = interese.indexOf(x) > -1;
+          return '<button type="button" class="chip' + (on ? " on" : "") + '" aria-pressed="' + on + '" data-chip="' + esc(x) + '">' + esc(x) + '</button>';
+        }).join("") + '</div>' +
         '<div class="field check" data-f="acord">' +
           '<label class="form-check" for="wl-acord">' +
             '<input id="wl-acord" type="checkbox" />' +
             '<span class="cc-box" aria-hidden="true"></span>' +
             '<span class="form-check-text">' +
-              'Sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> ' +
+              'Am cel puțin 18 ani, sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer">politica de confidențialitate</a> ' +
               'și cu <a href="/termeni-conditii" target="_blank" rel="noopener noreferrer">termenii și condițiile</a>, ' +
               'și vreau să primesc pe email noutăți despre Global Explorers Club.' +
             '</span>' +
           '</label>' +
           '<span class="err"></span>' +
         '</div>' +
-        '<button class="btn btn-primary" type="submit">' + SUBMIT + '</button>' +
-        '<div class="form-error" hidden></div>' +
-        '<div class="form-foot">' + TICK + ' Te poți dezabona oricând, cu un singur clic.</div>' +
-      '</form>';
+        '<button class="btn btn-primary" type="submit">Vreau să intru în poveste ' + ARROW + '</button>';
+    }
+    return chat + body +
+      (step > 1 ? '<button type="button" class="step-back">← Înapoi</button>' : '') +
+      '<div class="form-error" hidden></div>' +
+      '<div class="form-foot">' + TICK + ' Îți poți retrage acordul oricând, scriindu-ne la contact@globalexplorers.ro.</div>';
+  }
+
+  function formHTML() {
+    return CLOSE +
+      '<div class="form-title" id="wl-title">Intră pe lista de așteptare</div>' +
+      '<div class="form-sub">Locuri fondatoare limitate. Fără spam, promis.</div>' +
+      '<form novalidate>' + stepHTML() + '</form>';
+  }
+
+  function renderStep() {
+    form.innerHTML = stepHTML();
+    var back = form.querySelector(".step-back");
+    if (back) back.addEventListener("click", function () { step--; renderStep(); });
+    form.querySelectorAll("[data-chip]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var v = b.getAttribute("data-chip"), i = interese.indexOf(v);
+        if (i > -1) interese.splice(i, 1); else interese.push(v);
+        b.classList.toggle("on", i === -1);
+        b.setAttribute("aria-pressed", String(i === -1));
+      });
+    });
+    var f = form.querySelector("input[type=text], input[type=email]");
+    if (f) f.focus();
   }
 
   function build() {
@@ -83,6 +112,7 @@
     form = m.querySelector("form");
     m.querySelector(".contact-close").addEventListener("click", close);
     form.addEventListener("submit", onSubmit);
+    renderStep();
   }
 
   function fieldErr(name, msg) {
@@ -93,21 +123,19 @@
 
   function onSubmit(e) {
     e.preventDefault();
-    var data = {
-      prenume: form.querySelector("#wl-prenume").value.trim(),
-      email: form.querySelector("#wl-email").value.trim(),
-      capitol: form.querySelector("#wl-capitol").value.trim()
-    };
-    var acord = form.querySelector("#wl-acord").checked;
-
-    var valid = true;
-    if (!data.prenume) { fieldErr("prenume", "Spune-ne cum te cheamă."); valid = false; } else fieldErr("prenume", "");
-    if (!data.email) { fieldErr("email", "Avem nevoie de un email."); valid = false; }
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { fieldErr("email", "Emailul nu pare valid."); valid = false; }
-    else fieldErr("email", "");
-    if (!acord) { fieldErr("acord", "Avem nevoie de acordul tău ca să te putem contacta."); valid = false; }
-    else fieldErr("acord", "");
-    if (!valid) return;
+    if (step === 1) {
+      vals.prenume = form.querySelector("#wl-prenume").value.trim();
+      if (!vals.prenume) { fieldErr("prenume", "Spune-ne cum te cheamă."); return; }
+      step = 2; renderStep(); return;
+    }
+    if (step === 2) {
+      vals.email = form.querySelector("#wl-email").value.trim();
+      if (!vals.email) { fieldErr("email", "Avem nevoie de un email."); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email)) { fieldErr("email", "Emailul nu pare valid."); return; }
+      step = 3; renderStep(); return;
+    }
+    if (!form.querySelector("#wl-acord").checked) { fieldErr("acord", "Bifează ca să confirmi că ai 18+ ani și ești de acord."); return; }
+    var data = { prenume: vals.prenume, email: vals.email, interese: interese.join(", "), capitol: interese.join(", ") }; // scriptul deployat salvează doar „capitol”
 
     data.acord = "da";
     data.acord_text = ACORD_TEXT;
@@ -139,11 +167,10 @@
       '<div class="form-success">' +
         '<div class="seal"><img src="/assets/logo.png?v=3" alt="Global Explorers Club" /></div>' +
         '<h3 id="wl-title">Bine ai venit, ' + (esc(d.prenume) || "exploratorule") + '.</h3>' +
-        '<p>Ești pe lista fondatorilor. Primul mesaj ajunge la <strong style="color:var(--amber-soft)">' + esc(d.email) + '</strong> în curând.</p>' +
+        '<p>Ești pe lista fondatorilor. Te anunțăm pe <strong style="color:var(--amber-soft)">' + esc(d.email) + '</strong> când deschidem porțile.</p>' +
         '<div class="next">' +
-          '<div class="row">' + TICK + ' Confirmare trimisă pe email</div>' +
-          '<div class="row">' + TICK + ' Loc rezervat pe lista de așteptare</div>' +
-          '<div class="row">' + TICK + ' Primești update-urile săptămânale</div>' +
+                    '<div class="row">' + TICK + ' Loc rezervat pe lista de așteptare</div>' +
+          '<div class="row">' + TICK + ' Fără spam, doar vești de la noi</div>' +
         '</div>' +
       '</div>';
     m.querySelector(".contact-close").addEventListener("click", close);
@@ -164,6 +191,7 @@
     // close any open mobile menu so the modal isn't stacked behind it
     document.querySelectorAll(".mobile-menu.open, .st-sheet.open").forEach(function (m) { m.classList.remove("open"); });
     document.querySelectorAll(".nav-toggle.open").forEach(function (t) { t.classList.remove("open"); });
+    step = 1; interese = []; vals = { prenume: "", email: "" };
     mountForm();
     lastFocus = document.activeElement;
     document.documentElement.classList.add("wl-lock");

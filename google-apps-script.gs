@@ -1,5 +1,5 @@
 var SHEET_NAME = "Waitlist";
-var HEADERS = ["Data", "Prenume", "Email", "Capitol", "Sursă", "Acord", "Text acord"];
+var HEADERS = ["Data", "Prenume", "Email", "Interese", "Sursă", "Acord", "Text acord"];
 
 /**
  * Se asigură că tabelul are toate coloanele din HEADERS.
@@ -41,7 +41,7 @@ function doPost(e) {
       new Date(),
       p.prenume || "",
       p.email || "",
-      p.capitol || "",
+      p.interese || p.capitol || "",
       "landing",
       "da",
       p.acord_text || "",
