@@ -9,6 +9,7 @@ needs_mark:
 ---
 
 ## Log
+- 2026-10-21 · Decided: footer credit look → variant A (muted grey, colour on hover) (Mark); committed on staging (55eddd1), not pushed or live
 - 2026-10-21 · Added a 'Created by Marketive Hub' credit (logo + link) to every footer, not committed or live yet; 5 look variants for Mark to pick from in credit-variante.html
 - 2026-10-12 · Blocked (heard in chat): Verificarea vârstei nu este implementată în prezent.
 - 2026-10-12 · Decided (heard in chat): Bifața este folosită ca declarație, nu ca verificare a vârstei.
