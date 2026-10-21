@@ -1094,3 +1094,10 @@ a.chain-step:hover .chain-name{ color:var(--text); }
 }
 .step-back:hover{ color:var(--gold-bright); }
 @media (prefers-reduced-motion: reduce){ .b{ animation:none; } }
+
+/* Marketive Hub credit: muted grey, colour on hover */
+.footer-credit{ display:inline-flex; align-items:center; gap:10px; font-size:0.8rem; color:var(--text-faint); text-decoration:none; opacity:.7; transition:opacity .3s, color .3s; }
+.footer-credit img{ filter:grayscale(1) brightness(.75); transition:filter .3s; }
+.footer-credit b{ font-weight:600; letter-spacing:-.01em; }
+.footer-credit:hover{ opacity:1; color:var(--text); }
+.footer-credit:hover img{ filter:none; }
